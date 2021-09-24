@@ -1,5 +1,5 @@
 {
-  "name": "@nest-starter/api",
+  "name": "@hacksquad/api",
   "version": "1.2.5",
   "description": "description",
   "author": "",
@@ -19,8 +19,8 @@
   "dependencies": {
     "@nestjsx/crud": "^4.6.2",
     "@godaddy/terminus": "^4.3.1",
-    "@nest-starter/core": "^1.2.4",
-    "@nest-starter/shared": "^1.1.70",
+    "@hacksquad/core": "^1.2.4",
+    "@hacksquad/shared": "^1.1.70",
     "@nestjs/common": "^7.4.2",
     "@nestjs/core": "^7.4.2",
     "@nestjs/graphql": "^7.3.4",

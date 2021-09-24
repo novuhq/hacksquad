@@ -1,5 +1,5 @@
 import { IsOptional, IsString } from 'class-validator';
-import { ICreateOrganizationDto } from '@nest-starter/shared';
+import { ICreateOrganizationDto } from '@hacksquad/shared';
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()

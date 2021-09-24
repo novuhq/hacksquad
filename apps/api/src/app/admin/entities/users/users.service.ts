@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserEntity, UserRepository } from '@nest-starter/core';
+import { UserEntity, UserRepository } from '@hacksquad/core';
 import { MongooseCrudService } from '../../../shared/crud/mongoose-crud.service';
 
 @Injectable()

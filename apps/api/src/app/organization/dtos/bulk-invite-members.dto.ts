@@ -1,4 +1,4 @@
-import { IBulkInviteRequestDto } from '@nest-starter/shared';
+import { IBulkInviteRequestDto } from '@hacksquad/shared';
 import { Type } from 'class-transformer';
 import { ArrayNotEmpty, IsArray, IsDefined, IsEmail, IsNotEmpty, ValidateNested } from 'class-validator';
 

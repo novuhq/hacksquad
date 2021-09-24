@@ -9,8 +9,8 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { OrganizationEntity } from '@nest-starter/core';
-import { IJwtPayload, MemberRoleEnum } from '@nest-starter/shared';
+import { OrganizationEntity } from '@hacksquad/core';
+import { IJwtPayload, MemberRoleEnum } from '@hacksquad/shared';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from '../auth/framework/roles.decorator';
 import { UserSession } from '../shared/framework/user.decorator';

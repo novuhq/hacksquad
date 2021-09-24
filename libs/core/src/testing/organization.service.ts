@@ -1,4 +1,4 @@
-import { MemberRoleEnum, MemberStatusEnum } from '@nest-starter/shared';
+import { MemberRoleEnum, MemberStatusEnum } from '@hacksquad/shared';
 import * as faker from 'faker';
 import { OrganizationRepository } from '../dal';
 

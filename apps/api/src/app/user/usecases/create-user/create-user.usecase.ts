@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserEntity, UserRepository } from '@nest-starter/core';
+import { UserEntity, UserRepository } from '@hacksquad/core';
 import { CreateUserCommand } from './create-user.dto';
 
 @Injectable()
@@ -13,6 +13,8 @@ export class CreateUser {
     user.firstName = data.firstName ? data.firstName.toLowerCase() : null;
     user.lastName = data.lastName ? data.lastName.toLowerCase() : data.lastName;
     user.profilePicture = data.picture;
+    user.username = data.username;
+    user.profile = data.profile;
     user.tokens = [
       {
         providerId: data.auth.profileId,

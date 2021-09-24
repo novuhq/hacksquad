@@ -7,7 +7,7 @@ import {
   AnalyticsService,
   MailService,
   OrganizationRepository,
-} from '@nest-starter/core';
+} from '@hacksquad/core';
 
 const DAL_MODELS = [UserRepository, OrganizationRepository];
 

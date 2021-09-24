@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from '@nest-starter/core';
+import { UserRepository } from '@hacksquad/core';
 import { GetMyProfileCommand } from './get-my-profile.dto';
 
 @Injectable()

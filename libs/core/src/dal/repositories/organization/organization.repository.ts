@@ -1,4 +1,4 @@
-import { IMemberInvite, MemberRoleEnum, MemberStatusEnum } from '@nest-starter/shared';
+import { IMemberInvite, MemberRoleEnum, MemberStatusEnum } from '@hacksquad/shared';
 import { MemberEntity, OrganizationEntity } from './organization.entity';
 import { BaseRepository } from '../base-repository';
 import { Organization } from './organization.schema';

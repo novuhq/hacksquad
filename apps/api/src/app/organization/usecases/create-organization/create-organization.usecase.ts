@@ -7,8 +7,8 @@ import {
   QueueService,
   UserEntity,
   UserRepository,
-} from '@nest-starter/core';
-import { MemberRoleEnum } from '@nest-starter/shared';
+} from '@hacksquad/core';
+import { MemberRoleEnum } from '@hacksquad/shared';
 import { GetOrganizationCommand } from '../get-organization/get-organization.command';
 import { GetOrganization } from '../get-organization/get-organization.usecase';
 import { AddMemberCommand } from '../membership/add-member/add-member.command';

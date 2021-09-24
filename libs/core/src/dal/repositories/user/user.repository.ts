@@ -1,4 +1,4 @@
-import { AuthProviderEnum } from '@nest-starter/shared';
+import { AuthProviderEnum } from '@hacksquad/shared';
 import { BaseRepository } from '../base-repository';
 import { UserEntity } from './user.entity';
 import { User } from './user.schema';

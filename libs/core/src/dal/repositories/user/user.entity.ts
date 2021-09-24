@@ -1,4 +1,4 @@
-import { AuthProviderEnum } from '@nest-starter/shared';
+import { AuthProviderEnum } from '@hacksquad/shared';
 import { Exclude } from 'class-transformer';
 
 export interface IUserToken {
@@ -20,6 +20,10 @@ export class UserEntity {
   email: string;
 
   profilePicture: string;
+
+  username: string;
+
+  profile: any;
 
   @Exclude({ toPlainOnly: true })
   tokens: IUserToken[];

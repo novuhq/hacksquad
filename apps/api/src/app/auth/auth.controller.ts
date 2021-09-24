@@ -13,10 +13,10 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { OrganizationRepository, UserRepository } from '@nest-starter/core';
+import { OrganizationRepository, UserRepository } from '@hacksquad/core';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
-import { IJwtPayload } from '@nest-starter/shared';
+import { IJwtPayload } from '@hacksquad/shared';
 import { AuthService } from './services/auth.service';
 import { UserRegistrationBodyDto } from './dtos/user-registration.dto';
 import { UserRegister } from './usecases/register/user-register.usecase';
@@ -66,28 +66,6 @@ export class AuthController {
     if (!user || !user._id) throw new BadRequestException();
 
     return this.authService.refreshToken(user._id);
-  }
-
-  @Post('/register')
-  async userRegistration(@Body() body: UserRegistrationBodyDto) {
-    return await this.userRegisterUsecase.execute(
-      UserRegisterCommand.create({
-        email: body.email,
-        password: body.password,
-        firstName: body.firstName,
-        lastName: body.lastName,
-      })
-    );
-  }
-
-  @Post('/login')
-  async userLogin(@Body() body: LoginBodyDto) {
-    return await this.loginUsecase.execute(
-      LoginCommand.create({
-        email: body.email,
-        password: body.password,
-      })
-    );
   }
 
   @Get('/test/token/:userId')

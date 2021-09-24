@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { IJwtPayload } from '@nest-starter/shared';
+import { IJwtPayload } from '@hacksquad/shared';
 import * as jwt from 'jsonwebtoken';
 
 @Injectable()

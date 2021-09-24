@@ -1,6 +1,6 @@
-import { UserSession } from '@nest-starter/core';
+import { UserSession } from '@hacksquad/core';
 import { expect } from 'chai';
-import { IOrganizationEntity, IUserEntity } from '@nest-starter/shared';
+import { IOrganizationEntity, IUserEntity } from '@hacksquad/shared';
 import { gql } from 'apollo-boost';
 import { IGetMyOrganizationDto } from '../../../src/app/organization/dtos/get-my-organization.dto';
 

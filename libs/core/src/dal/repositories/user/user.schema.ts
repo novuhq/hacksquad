@@ -9,6 +9,8 @@ const userSchema = new Schema(
     lastName: Schema.Types.String,
     email: Schema.Types.String,
     profilePicture: Schema.Types.String,
+    username: Schema.Types.String,
+    profile: Schema.Types.Mixed,
     tokens: [
       {
         providerId: Schema.Types.String,

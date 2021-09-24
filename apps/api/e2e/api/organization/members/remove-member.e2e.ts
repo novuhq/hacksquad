@@ -1,5 +1,5 @@
-import { MemberEntity, OrganizationRepository, UserSession } from '@nest-starter/core';
-import { MemberRoleEnum, MemberStatusEnum } from '@nest-starter/shared';
+import { MemberEntity, OrganizationRepository, UserSession } from '@hacksquad/core';
+import { MemberRoleEnum, MemberStatusEnum } from '@hacksquad/shared';
 import { expect } from 'chai';
 import { describe } from 'mocha';
 

@@ -1,6 +1,6 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { OrganizationRepository } from '@nest-starter/core';
-import { MemberStatusEnum } from '@nest-starter/shared';
+import { OrganizationRepository } from '@hacksquad/core';
+import { MemberStatusEnum } from '@hacksquad/shared';
 import { ApiException } from '../../../../shared/exceptions/api.exception';
 import { AddMemberCommand } from './add-member.command';
 

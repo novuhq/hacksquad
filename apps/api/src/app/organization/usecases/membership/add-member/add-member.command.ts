@@ -1,4 +1,4 @@
-import { MemberRoleEnum } from '@nest-starter/shared';
+import { MemberRoleEnum } from '@hacksquad/shared';
 import { ArrayNotEmpty } from 'class-validator';
 import { CommandHelper } from '../../../../shared/commands/command.helper';
 import { OrganizationCommand } from '../../../../shared/commands/organization.command';

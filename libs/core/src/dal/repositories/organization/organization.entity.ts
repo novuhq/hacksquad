@@ -1,4 +1,4 @@
-import { IMemberInvite, MemberRoleEnum, MemberStatusEnum } from '@nest-starter/shared';
+import { IMemberInvite, MemberRoleEnum, MemberStatusEnum } from '@hacksquad/shared';
 import { Exclude } from 'class-transformer';
 import { UserEntity } from '../user';
 

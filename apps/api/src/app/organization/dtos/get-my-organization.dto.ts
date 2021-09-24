@@ -1,3 +1,3 @@
-import { OrganizationEntity } from '@nest-starter/core';
+import { OrganizationEntity } from '@hacksquad/core';
 
 export type IGetMyOrganizationDto = OrganizationEntity;

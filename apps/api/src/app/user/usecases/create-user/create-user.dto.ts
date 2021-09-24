@@ -1,4 +1,4 @@
-import { AuthProviderEnum } from '@nest-starter/shared';
+import { AuthProviderEnum } from '@hacksquad/shared';
 import { CommandHelper } from '../../../shared/commands/command.helper';
 
 export class CreateUserCommand {
@@ -13,6 +13,10 @@ export class CreateUserCommand {
   lastName: string;
 
   picture?: string;
+
+  username: string;
+
+  profile: any;
 
   auth: {
     profileId: string;

@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { MemberStatusEnum } from '@nest-starter/shared';
+import { MemberStatusEnum } from '@hacksquad/shared';
 
 @ObjectType()
 export class Member {

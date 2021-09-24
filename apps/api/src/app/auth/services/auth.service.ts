@@ -7,8 +7,8 @@ import {
   QueueService,
   MemberEntity,
   OrganizationRepository,
-} from '@nest-starter/core';
-import { AuthProviderEnum, IJwtPayload } from '@nest-starter/shared';
+} from '@hacksquad/core';
+import { AuthProviderEnum, IJwtPayload } from '@hacksquad/shared';
 
 import { CreateUserCommand } from '../../user/usecases/create-user/create-user.dto';
 import { CreateUser } from '../../user/usecases/create-user/create-user.usecase';
@@ -41,6 +41,8 @@ export class AuthService {
           email: profile.email,
           lastName: profile.name ? profile.name.split(' ').slice(-1).join(' ') : null,
           firstName: profile.name ? profile.name.split(' ').slice(0, -1).join(' ') : profile.login,
+          username: profile.login,
+          profile,
           auth: {
             profileId: profile.id,
             provider: authProvider,

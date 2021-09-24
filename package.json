@@ -1,5 +1,5 @@
 {
-  "name": "nest-starter",
+  "name": "hacksquad",
   "private": true,
   "scripts": {
     "start": "cross-env TZ=UTC mono-run start:dev --stream 500",
@@ -7,8 +7,8 @@
     "test": "cross-env CI=true mono-run test:watch --stream --parallel",
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
-    "start:server": "cross-env lerna run --parallel --ignore @nest-starter/client start:dev",
-    "start:server:prod": "lerna run --parallel --ignore @nest-starter/client start",
+    "start:server": "cross-env lerna run --parallel --ignore @hacksquad/client start:dev",
+    "start:server:prod": "lerna run --parallel --ignore @hacksquad/client start",
     "build": "node --max-old-space-size=1900 ./node_modules/.bin/lerna run build",
     "release:patch": "lerna version patch"
   },

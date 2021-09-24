@@ -1,5 +1,5 @@
-import { OrganizationRepository, UserSession } from '@nest-starter/core';
-import { IOrganizationEntity, MemberRoleEnum } from '@nest-starter/shared';
+import { OrganizationRepository, UserSession } from '@hacksquad/core';
+import { IOrganizationEntity, MemberRoleEnum } from '@hacksquad/shared';
 import { expect } from 'chai';
 import { gql } from 'apollo-boost';
 

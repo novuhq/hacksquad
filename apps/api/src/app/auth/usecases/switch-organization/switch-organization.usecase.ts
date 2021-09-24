@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
-import { OrganizationRepository, UserRepository } from '@nest-starter/core';
+import { OrganizationRepository, UserRepository } from '@hacksquad/core';
 import { SwitchOrganizationCommand } from './switch-organization.command';
 import { AuthService } from '../../services/auth.service';
 

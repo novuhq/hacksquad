@@ -1,7 +1,7 @@
-import { UserSession } from '@nest-starter/core';
+import { UserSession } from '@hacksquad/core';
 import * as jwt from 'jsonwebtoken';
 import { expect } from 'chai';
-import { IJwtPayload } from '@nest-starter/shared/src';
+import { IJwtPayload } from '@hacksquad/shared/src';
 
 describe('User registration - /auth/register (POST)', async () => {
   let session: UserSession;

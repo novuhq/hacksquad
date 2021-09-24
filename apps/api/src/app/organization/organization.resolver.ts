@@ -1,5 +1,5 @@
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { IJwtPayload, MemberRoleEnum } from '@nest-starter/shared';
+import { IJwtPayload, MemberRoleEnum } from '@hacksquad/shared';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '../auth/framework/gql-auth.guard';
 import { UserSession } from '../shared/framework/user.decorator';

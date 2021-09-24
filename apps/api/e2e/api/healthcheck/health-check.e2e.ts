@@ -1,4 +1,4 @@
-import { UserSession } from '@nest-starter/core';
+import { UserSession } from '@hacksquad/core';
 import { expect } from 'chai';
 
 describe('Health-check', () => {

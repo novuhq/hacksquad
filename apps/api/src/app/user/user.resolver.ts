@@ -1,5 +1,5 @@
 import { Query, Resolver } from '@nestjs/graphql';
-import { IJwtPayload } from '@nest-starter/shared';
+import { IJwtPayload } from '@hacksquad/shared';
 import { UseGuards } from '@nestjs/common';
 import { User } from './user.graph';
 import { GqlAuthGuard } from '../auth/framework/gql-auth.guard';

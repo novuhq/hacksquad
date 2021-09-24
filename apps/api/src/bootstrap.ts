@@ -45,8 +45,8 @@ export async function bootstrap(): Promise<INestApplication> {
 
   if (process.env.NODE_ENV === 'dev') {
     const options = new DocumentBuilder()
-      .setTitle('nest-starter API')
-      .setDescription('The nest-starter API description')
+      .setTitle('hacksquad API')
+      .setDescription('The hacksquad API description')
       .setVersion('1.0')
       .build();
     const document = SwaggerModule.createDocument(app, options);

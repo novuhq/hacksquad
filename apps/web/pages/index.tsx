@@ -1,6 +1,10 @@
 import Head from 'next/head';
 
 export default function Home() {
+  async function authenticate() {
+    console.log('e');
+  }
+
   return (
     <div className="container">
       <Head>
@@ -19,6 +23,9 @@ export default function Home() {
           <code>pages/index.js</code>
         </p>
 
+        <button type="button" onClick={authenticate}>
+          AUTH
+        </button>
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">
             <h3>Documentation &rarr;</h3>

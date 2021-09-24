@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserSession } from '@nest-starter/core';
+import { UserSession } from '@hacksquad/core';
 import { SeedDataCommand } from './seed-data.command';
 
 @Injectable()

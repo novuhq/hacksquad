@@ -1,5 +1,5 @@
 import { Module, OnModuleInit } from '@nestjs/common';
-import { CronService, QueueService } from '@nest-starter/core';
+import { CronService, QueueService } from '@hacksquad/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { SharedModule } from './app/shared/shared.module';
 import { UserModule } from './app/user/user.module';
@@ -8,6 +8,7 @@ import { TestingModule } from './app/testing/testing.module';
 import { HealthModule } from './app/health/health.module';
 import { AdminModule } from './app/admin/admin.module';
 import { OrganizationModule } from './app/organization/organization.module';
+import { CollectorModule } from './app/collector/collector.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { OrganizationModule } from './app/organization/organization.module';
     AuthModule,
     HealthModule,
     AdminModule,
+    CollectorModule,
   ],
   controllers: [],
   providers: [

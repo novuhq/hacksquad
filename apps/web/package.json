@@ -1,0 +1,27 @@
+{
+  "name": "@nest-starter/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start:dev": "next dev --port=4200",
+    "precommit": "lint-staged",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --fix"
+  },
+  "dependencies": {
+    "next": "^10.0.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": ["yarn lint", "prettier --ignore-path .eslintignore --write"],
+    "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": [
+      "prettier --ignore-path .eslintignore --parser json --write"
+    ],
+    "*.{html,md,yml}": ["prettier --ignore-path .eslintignore --single-quote --write"]
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.35"
+  }
+}

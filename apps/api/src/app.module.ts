@@ -10,6 +10,7 @@ import { AdminModule } from './app/admin/admin.module';
 import { OrganizationModule } from './app/organization/organization.module';
 import { CollectorModule } from './app/collector/collector.module';
 import { ProcessUserUsecase } from './app/collector/usecases/process-user/process-user.usecase';
+import { StorageModule } from './app/storage/storage.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ProcessUserUsecase } from './app/collector/usecases/process-user/proces
     HealthModule,
     AdminModule,
     CollectorModule,
+    StorageModule,
   ],
   controllers: [],
   providers: [

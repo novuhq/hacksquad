@@ -1,10 +1,22 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+
   body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0a071b;
+    color: white;
+  }
+
+
+  .ant-upload {
+    color: rgb(249 249 249 / 65%)
+  }
+  .ant-form-item-label > label {
+    color: #8c87a6;
   }
 `;
 

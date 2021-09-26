@@ -1,8 +1,7 @@
-import * as S3 from 'aws-sdk/clients/s3';
-import * as fs from 'fs-extra';
-import * as archiver from 'archiver';
-import * as asyncLib from 'async';
-import { createGuid } from '../helper/helper.service';
+import { URL } from 'url';
+
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 export interface IFilePath {
   path: string;
@@ -10,108 +9,25 @@ export interface IFilePath {
 }
 
 export class StorageService {
-  private s3 = new S3({
-    apiVersion: '2006-03-01',
+  private s3 = new S3Client({
     region: process.env.S3_REGION,
-    accessKeyId: process.env.S3_ACCESS_KEY,
-    secretAccessKey: process.env.S3_SECRET,
+    forcePathStyle: true,
   });
 
-  async store(file: Buffer, path: string): Promise<{ path: string }> {
-    return await new Promise((resolve, reject) => {
-      this.s3.putObject(
-        {
-          Body: file,
-          Key: path,
-          Bucket: process.env.S3_BUCKET_NAME,
-        },
-        (err) => {
-          if (err) return reject(err);
-
-          return resolve({
-            path,
-          });
-        }
-      );
+  async getSignedUrl(key: string, contentType?: string) {
+    const command = new PutObjectCommand({
+      Key: key,
+      Bucket: process.env.S3_BUCKET_NAME,
+      ACL: 'public-read',
+      ContentType: contentType,
     });
-  }
 
-  async getFile(path: string): Promise<{ body: S3.Body; path: string }> {
-    return await new Promise((resolve, reject) => {
-      this.s3.getObject(
-        {
-          Key: path,
-          Bucket: process.env.S3_BUCKET_NAME,
-        },
-        (err, file) => {
-          if (err) return reject(err);
+    const signedUrl = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
+    const parsedUrl = new URL(signedUrl);
 
-          return resolve({
-            path,
-            body: file.Body,
-          });
-        }
-      );
-    });
-  }
-
-  async downloadMultipleFilesZip(paths: IFilePath[]): Promise<string> {
-    // eslint-disable-next-line no-async-promise-executor
-    return await new Promise(async (resolve, reject) => {
-      const results = await this.downloadFiles(paths);
-      const outputPath = `/tmp/${createGuid()}.zip`;
-      const output = fs.createWriteStream(outputPath);
-      const archive = archiver('zip', {
-        zlib: { level: 9 },
-      });
-
-      output.on('close', () => {
-        resolve(outputPath);
-      });
-
-      output.on('error', (err) => {
-        reject(err);
-      });
-
-      archive.pipe(output);
-
-      for (const result of results) {
-        archive.append(result.file.body, {
-          name: result.name,
-        });
-      }
-
-      archive.finalize();
-    });
-  }
-
-  async downloadFiles(files: IFilePath[]): Promise<{ file: { path: string; body: Buffer }; name: string }[]> {
-    const results = [];
-
-    return await new Promise((resolve, reject) => {
-      asyncLib.parallelLimit(
-        files.map((file) => {
-          return async (done: (error?: Error) => void) => {
-            try {
-              const result = await this.getFile(file.path);
-
-              results.push({
-                file: result,
-                name: file.name,
-              });
-              done();
-            } catch (e) {
-              done(e);
-            }
-          };
-        }),
-        5,
-        (err) => {
-          if (err) return reject(err);
-
-          return resolve(results);
-        }
-      );
-    });
+    return {
+      signedUrl,
+      path: `${parsedUrl.origin}${parsedUrl.pathname}`,
+    };
   }
 }

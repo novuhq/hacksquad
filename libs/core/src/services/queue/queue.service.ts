@@ -1,8 +1,8 @@
 import * as Bull from 'bull';
 import { Queue } from 'bull';
-import { IDemoQueuePayload } from './queue.interface';
+import { IUserProcessQueue } from './queue.interface';
 
-export const DEMO_QUEUE = 'demo_queue';
+export const USER_PROCESS_QUEUE = 'user_process_queue';
 
 export class QueueService {
   private bullConfig: Bull.QueueOptions = {
@@ -19,19 +19,19 @@ export class QueueService {
     },
   };
 
-  public demoQueue: Queue<IDemoQueuePayload> = new Bull(DEMO_QUEUE, this.bullConfig) as Queue;
+  public userProcessQueue: Queue<IUserProcessQueue> = new Bull(USER_PROCESS_QUEUE, this.bullConfig) as Queue;
 
-  async getJobStats(type: 'demo_queue'): Promise<{ waiting: number; active: number }> {
-    if (type === 'demo_queue') {
+  async getJobStats(type: 'user_process_queue'): Promise<{ waiting: number; active: number }> {
+    if (type === 'user_process_queue') {
       return {
-        waiting: await this.demoQueue.getWaitingCount(),
-        active: await this.demoQueue.getActiveCount(),
+        waiting: await this.userProcessQueue.getWaitingCount(),
+        active: await this.userProcessQueue.getActiveCount(),
       };
     }
     throw new Error(`Unexpected type ${type}`);
   }
 
   async cleanAllQueues() {
-    await this.demoQueue.empty();
+    await this.userProcessQueue.empty();
   }
 }

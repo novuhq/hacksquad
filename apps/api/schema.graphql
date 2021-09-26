@@ -34,5 +34,5 @@ type Mutation {
 
 input CreateOrganizationDto {
   name: String!
-  logo: String
+  company: String
 }

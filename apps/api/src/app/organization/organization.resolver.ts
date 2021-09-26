@@ -26,7 +26,7 @@ export class OrganizationResolver {
   async createOrganization(@UserSession() user: IJwtPayload, @Args('body') body: CreateOrganizationDto) {
     const command = CreateOrganizationCommand.create({
       userId: user._id,
-      logo: body.logo,
+      company: body.company,
       name: body.name,
     });
     const organization = await this.createOrganizationUsecase.execute(command);

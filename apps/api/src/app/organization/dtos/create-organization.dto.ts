@@ -11,5 +11,5 @@ export class CreateOrganizationDto implements ICreateOrganizationDto {
   @IsString()
   @IsOptional()
   @Field({ nullable: true })
-  logo?: string;
+  company?: string;
 }

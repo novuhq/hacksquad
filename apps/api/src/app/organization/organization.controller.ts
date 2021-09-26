@@ -43,8 +43,8 @@ export class OrganizationController {
   ): Promise<OrganizationEntity> {
     const command = CreateOrganizationCommand.create({
       userId: user._id,
-      logo: body.logo,
       name: body.name,
+      company: body.company,
     });
     const organization = await this.createOrganizationUsecase.execute(command);
 

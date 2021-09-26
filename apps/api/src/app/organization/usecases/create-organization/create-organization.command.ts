@@ -6,6 +6,7 @@ export class CreateOrganizationCommand extends AuthenticatedCommand {
     return CommandHelper.create(CreateOrganizationCommand, data);
   }
 
-  public readonly logo: string;
   public readonly name: string;
+
+  public readonly company: string;
 }

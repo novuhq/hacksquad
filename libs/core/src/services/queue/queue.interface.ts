@@ -1,3 +1,3 @@
-export interface IDemoQueuePayload {
+export interface IUserProcessQueue {
   userId: string;
 }

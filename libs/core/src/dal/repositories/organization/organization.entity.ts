@@ -14,6 +14,7 @@ export class MemberEntity {
 export class OrganizationEntity {
   _id?: string;
   name: string;
+  company?: string;
   logo: string;
 
   @Exclude({ toPlainOnly: true })

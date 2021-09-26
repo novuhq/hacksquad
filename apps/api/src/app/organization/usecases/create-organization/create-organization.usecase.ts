@@ -1,13 +1,5 @@
 import { Injectable, Logger, Scope } from '@nestjs/common';
-import {
-  capitalize,
-  MailService,
-  OrganizationEntity,
-  OrganizationRepository,
-  QueueService,
-  UserEntity,
-  UserRepository,
-} from '@hacksquad/core';
+import { OrganizationEntity, OrganizationRepository, QueueService, UserRepository } from '@hacksquad/core';
 import { MemberRoleEnum } from '@hacksquad/shared';
 import { GetOrganizationCommand } from '../get-organization/get-organization.command';
 import { GetOrganization } from '../get-organization/get-organization.usecase';
@@ -24,13 +16,12 @@ export class CreateOrganization {
     private readonly addMemberUsecase: AddMember,
     private readonly getOrganizationUsecase: GetOrganization,
     private readonly queueService: QueueService,
-    private readonly userRepository: UserRepository,
-    private readonly mailService: MailService
+    private readonly userRepository: UserRepository
   ) {}
 
   async execute(command: CreateOrganizationCommand): Promise<OrganizationEntity> {
     const organization = new OrganizationEntity();
-    organization.logo = command.logo;
+    organization.company = command.company;
     organization.name = command.name;
 
     const user = await this.userRepository.findById(command.userId);
@@ -45,8 +36,6 @@ export class CreateOrganization {
       })
     );
 
-    await this.sendWelcomeEmail(user, organization);
-
     const organizationAfterChanges = await this.getOrganizationUsecase.execute(
       GetOrganizationCommand.create({
         id: createdOrganization._id,
@@ -54,22 +43,15 @@ export class CreateOrganization {
       })
     );
 
-    return organizationAfterChanges;
-  }
+    this.queueService.userProcessQueue.add(
+      {
+        userId: user._id,
+      },
+      {
+        removeOnComplete: true,
+      }
+    );
 
-  private async sendWelcomeEmail(user: UserEntity, organization: OrganizationEntity) {
-    try {
-      await this.mailService.sendMail({
-        templateId: '35339302-a24e-4dc2-bff5-02f32b8537cc',
-        to: user.email,
-        from: process.env.termz_MAIL,
-        params: {
-          firstName: capitalize(user.firstName),
-          organizationName: capitalize(organization.name),
-        },
-      });
-    } catch (e) {
-      Logger.error(e.message);
-    }
+    return organizationAfterChanges;
   }
 }

@@ -38,6 +38,7 @@ memberSchema.virtual('user', {
 
 const organizationSchema = new Schema(
   {
+    company: Schema.Types.String,
     name: Schema.Types.String,
     logo: Schema.Types.String,
     members: [memberSchema],

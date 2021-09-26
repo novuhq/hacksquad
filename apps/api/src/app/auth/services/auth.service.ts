@@ -73,7 +73,16 @@ export class AuthService {
   async refreshToken(userId: string) {
     const user = await this.userRepository.findById(userId);
 
-    return this.getSignedToken(user);
+    const userOrganizations = await this.organizationRepository.findUserActiveOrganizations(user._id);
+
+    let organizationId: string;
+    let member: MemberEntity;
+    if (userOrganizations?.length) {
+      organizationId = userOrganizations[0]._id;
+      member = await this.organizationRepository.findMemberByUserId(organizationId, userId);
+    }
+
+    return this.getSignedToken(user, organizationId, member);
   }
 
   async isAuthenticatedForOrganization(userId: string, organizationId: string): Promise<boolean> {
@@ -92,7 +101,7 @@ export class AuthService {
         roles: member && member.roles,
       },
       {
-        expiresIn: '30 days',
+        expiresIn: '60 days',
         issuer: 'starter_api',
       }
     );

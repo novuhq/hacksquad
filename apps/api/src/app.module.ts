@@ -1,5 +1,5 @@
 import { Module, OnModuleInit } from '@nestjs/common';
-import { CronService, QueueService } from '@hacksquad/core';
+import { CronService, QueueService, UserRepository } from '@hacksquad/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { SharedModule } from './app/shared/shared.module';
 import { UserModule } from './app/user/user.module';
@@ -9,6 +9,7 @@ import { HealthModule } from './app/health/health.module';
 import { AdminModule } from './app/admin/admin.module';
 import { OrganizationModule } from './app/organization/organization.module';
 import { CollectorModule } from './app/collector/collector.module';
+import { ProcessUserUsecase } from './app/collector/usecases/process-user/process-user.usecase';
 
 @Module({
   imports: [
@@ -39,18 +40,44 @@ import { CollectorModule } from './app/collector/collector.module';
   ],
 })
 export class AppModule implements OnModuleInit {
-  constructor(private queueService: QueueService, private cronService: CronService) {}
+  constructor(
+    private queueService: QueueService,
+    private cronService: CronService,
+    private processUser: ProcessUserUsecase,
+    private userRepository: UserRepository
+  ) {}
 
   async onModuleInit() {
     await this.cronService.initialize();
-    this.cronService.define('demo_cron_job', async (job, done) => {
+
+    this.cronService.define('collector_job', async (job, done) => {
+      const users = await this.userRepository.find({});
+
+      for (const user of users) {
+        // eslint-disable-next-line no-console
+        console.log('Processing user: ', user.username);
+        await this.queueService.userProcessQueue.add(
+          {
+            userId: user._id,
+          },
+          {
+            removeOnComplete: true,
+          }
+        );
+      }
+
       done();
     });
 
-    await this.cronService.processEvery('demo_cron_job', '5 minutes');
+    await this.cronService.processEvery('collector_job', '30 minutes');
+    await this.cronService.processNow('collector_job');
 
-    this.queueService.demoQueue.process(5, async (job) => {
-      // Demo queue processing
+    this.queueService.userProcessQueue.process(5, async (job) => {
+      const user = await this.userRepository.findById(job.data.userId);
+
+      await this.processUser.execute({
+        user,
+      });
     });
   }
 }

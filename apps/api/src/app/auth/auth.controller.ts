@@ -18,12 +18,8 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 import { IJwtPayload } from '@hacksquad/shared';
 import { AuthService } from './services/auth.service';
-import { UserRegistrationBodyDto } from './dtos/user-registration.dto';
 import { UserRegister } from './usecases/register/user-register.usecase';
-import { UserRegisterCommand } from './usecases/register/user-register.command';
 import { Login } from './usecases/login/login.usecase';
-import { LoginBodyDto } from './dtos/login.dto';
-import { LoginCommand } from './usecases/login/login.command';
 import { UserSession } from '../shared/framework/user.decorator';
 
 @Controller('/auth')

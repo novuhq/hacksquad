@@ -10,18 +10,35 @@
     "lint": "eslint --fix"
   },
   "dependencies": {
-    "next": "^11.1.2",
-    "react": "^17.0.2",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-less": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "antd": "^4.16.13",
     "appwrite": "^4.0.2",
+    "babel-plugin-import": "^1.13.3",
+    "bootstrap": "^3.4.1",
+    "less": "^4.1.1",
+    "less-vars-to-js": "^1.3.0",
+    "next": "10.2.2",
+    "axios": "^0.21.4",
+    "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "styled-components": "^5.3.1"
+    "react-social-login-buttons": "^3.5.1",
+    "styled-components": "^5.3.1",
+    "webpack": "4.44.1",
+    "webpack-cli": "^4.7.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["yarn lint", "prettier --ignore-path .eslintignore --write"],
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint",
+      "prettier --ignore-path .eslintignore --write"
+    ],
     "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": [
       "prettier --ignore-path .eslintignore --parser json --write"
     ],
-    "*.{html,md,yml}": ["prettier --ignore-path .eslintignore --single-quote --write"]
+    "*.{html,md,yml}": [
+      "prettier --ignore-path .eslintignore --single-quote --write"
+    ]
   },
   "devDependencies": {
     "@types/react": "^16.9.35",

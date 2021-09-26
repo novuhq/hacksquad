@@ -7,9 +7,10 @@ import {
   AnalyticsService,
   MailService,
   OrganizationRepository,
+  ContributionRepository,
 } from '@hacksquad/core';
 
-const DAL_MODELS = [UserRepository, OrganizationRepository];
+const DAL_MODELS = [UserRepository, OrganizationRepository, ContributionRepository];
 
 const dalService = new DalService();
 export const ANALYTICS_SERVICE = 'AnalyticsService';

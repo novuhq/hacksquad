@@ -36,8 +36,8 @@ export function MainPageHero() {
       <div className="container home-header-grid">
         <div>
           <div className="title-blue">Have fun</div>
-          <h1 className="hero-heading-white">Friendly Open-SourceTeam Competion</h1>
-          <p className="body-large-400 max-width">Contribute Code. Help the community. Win a t-shirt.</p>
+          <h1 className="hero-heading-white">Friendly Open-Source Team Competition</h1>
+          <p className="body-large-400 max-width">Contribute Code. Help the community. Win Swag.</p>
           <div className="button-wrapper-centre">
             <a href={AUTH_URL} className="button button-space w-button">
               Start now
@@ -76,7 +76,7 @@ export function ValuesSection() {
         <div className="feature-wrapper">
           <div className="w-layout-grid feature-grid">
             <div id="w-node-_514b032d-d573-f43d-3da9-16dbc81ff8e5-c81ff8e0">
-              <div className="title title-large">
+              <div className="title title-large heading-white">
                 {' '}
                 what we
                 <br />
@@ -115,8 +115,8 @@ export function ValuesSection() {
                 />
                 <h5 className="heading-white">Developers Community</h5>
                 <p className="body-medium">
-                  Open source is much more than just accessable code. It's being part of a community, educate juniors,
-                  learn togather, help projects,have fun.
+                  Open source is much more than just accessible code. It's being part of a community, educate peers,
+                  learn together, help projects, have fun.
                 </p>
               </div>
               <div className="feature-block-dark">
@@ -126,10 +126,10 @@ export function ValuesSection() {
                   alt=""
                   className="icon-medium"
                 />
-                <h5 className="heading-white">Friendly Competion</h5>
+                <h5 className="heading-white">Friendly Competition</h5>
                 <p className="body-medium">
-                  Compete, try to be better, contribute more, crush the competion :) But never forget, it's friendly,
-                  helping the community is why you joind.
+                  Compete, try to be better, contribute more, crush the competition :) But never forget, it's friendly,
+                  helping the community is why you joined.
                 </p>
               </div>
             </div>
@@ -147,13 +147,13 @@ export function HowItWorksSection() {
       <div className="container-large">
         <div className="title-wrap-large-centre">
           <div className="title-blue">How it works</div>
-          <h3 className="h3-title-white">Simple steps to join the competion</h3>
+          <h3 className="h3-title-white">Simple steps to join the competition</h3>
         </div>
         <div className="w-layout-grid company-grid">
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Join your Team</div>
             <p className="body-medium text-neutral-400">
-              Register with Github, and join your team, or open a new one with your uniqe name and colors.
+              Register with Github, and join your team, or open a new one with your unique name and colors.
             </p>
             <div className="div-block">
               <a href="#" className="button-dark w-button">
@@ -164,7 +164,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Invite Others</div>
             <p className="body-medium text-neutral-400">
-              Invite your fellow developers, or company to join your team. Don't forget to invite your competetors as
+              Invite your fellow developers, or company to join your team. Don't forget to invite your competitors as
               well.
             </p>
             <div className="div-block">
@@ -412,6 +412,13 @@ export function SponsorsSection() {
             src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e0895eb1c24e2506696f_panw-bridgecrew-closing-logo-lockup-white.svg"
             loading="lazy"
             id="w-node-d667362f-3d76-0aba-5d94-efeb72b93136-72b9312f"
+            alt=""
+            className="logo"
+          />
+          <img
+            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6151a1dc5ce80b84a433d024_Logo%20-%20White.png"
+            loading="lazy"
+            id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b9312f"
             alt=""
             className="logo"
           />

@@ -1,4 +1,4 @@
-import exp from 'constants';
+import { API_ROOT } from './api';
 
 export function setToken(token: string) {
   localStorage.setItem('squad_token', token);
@@ -11,3 +11,5 @@ export function getToken() {
 export function isLoggedIn() {
   return !!getToken();
 }
+
+export const AUTH_URL = `${API_ROOT}/auth/github`;

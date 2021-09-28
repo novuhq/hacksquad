@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsHexColor, IsOptional, IsString } from 'class-validator';
 import { ICreateOrganizationDto } from '@hacksquad/shared';
 import { Field, InputType } from '@nestjs/graphql';
 
@@ -12,4 +12,11 @@ export class CreateOrganizationDto implements ICreateOrganizationDto {
   @IsOptional()
   @Field({ nullable: true })
   company?: string;
+
+  @IsOptional()
+  @IsHexColor()
+  color?: string;
+
+  @IsOptional()
+  logo?: string;
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import { AUTH_URL } from '../../shared/auth.service';
+import { AUTH_URL } from '../../shared/api';
 
 export function NavigationBar() {
   return (

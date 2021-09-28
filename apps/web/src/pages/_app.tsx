@@ -1,4 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import '../styles/wl-styles.less';
 
 const GlobalStyle = createGlobalStyle`
 

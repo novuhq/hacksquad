@@ -23,6 +23,8 @@ export class CreateOrganization {
     const organization = new OrganizationEntity();
     organization.company = command.company;
     organization.name = command.name;
+    organization.color = command.color;
+    organization.logo = command.logo;
 
     const user = await this.userRepository.findById(command.userId);
 

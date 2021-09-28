@@ -41,6 +41,7 @@ const organizationSchema = new Schema(
     company: Schema.Types.String,
     name: Schema.Types.String,
     logo: Schema.Types.String,
+    color: Schema.Types.String,
     members: [memberSchema],
   },
   schemaOptions

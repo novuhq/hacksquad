@@ -1,4 +1,3 @@
-import '../styles/wl-styles.less';
 import {
   FeaturedTeams,
   Footer,

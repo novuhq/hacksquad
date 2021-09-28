@@ -13,6 +13,7 @@ export class MemberEntity {
 
 export class OrganizationEntity {
   _id?: string;
+  color: string;
   name: string;
   company?: string;
   logo: string;

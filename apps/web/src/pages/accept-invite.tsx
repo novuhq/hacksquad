@@ -49,7 +49,10 @@ export default function AcceptInvite() {
 {' '}
 Squad
 </h1>
-        <GithubLoginButton style={{ maxWidth: 300 }} onClick={() => window.open(AUTH_URL)} />
+        <GithubLoginButton
+          style={{ maxWidth: 300 }}
+          onClick={() => window.open(`${AUTH_URL}?token=${router?.query?.token}`)}
+        />
       </div>
       <Footer />
     </>

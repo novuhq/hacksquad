@@ -4,5 +4,16 @@ import { GetMyOrganization } from './get-my-organization/get-my-organization.use
 import { AddMember } from './membership/add-member/add-member.usecase';
 import { GetMembers } from './membership/get-members/get-members.usecase';
 import { RemoveMember } from './membership/remove-member/remove-member.usecase';
+import { OrganizationInvite } from './organization-invite/organization-invite.usecase';
+import { AcceptInviteUsecase } from './accept-invite/accept-invite.usecase';
 
-export const USE_CASES = [AddMember, CreateOrganization, GetOrganization, GetMyOrganization, GetMembers, RemoveMember];
+export const USE_CASES = [
+  AddMember,
+  CreateOrganization,
+  GetOrganization,
+  GetMyOrganization,
+  GetMembers,
+  RemoveMember,
+  OrganizationInvite,
+  AcceptInviteUsecase,
+];

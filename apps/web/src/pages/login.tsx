@@ -5,6 +5,7 @@ import { setToken } from '../shared/auth.service';
 
 export default function LoginPage() {
   const router = useRouter();
+
   useEffect(() => {
     if (router.query.token && typeof window !== 'undefined') {
       setToken(router.query.token as string);

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { NavigationBar } from '../shared/NavBar';
-import { AUTH_URL } from '../../shared/auth.service';
+import { AUTH_URL } from '../../shared/api';
 
 export function PageBanner() {
   return (

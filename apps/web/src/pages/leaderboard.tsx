@@ -1,3 +1,12 @@
+import { NavigationBar } from '../components/shared/NavBar';
+import { Footer } from '../components/landing';
+
 export default function () {
-  return <>asd</>;
+  return (
+    <>
+      <NavigationBar />
+      <div />
+      <Footer />
+    </>
+  );
 }

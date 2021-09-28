@@ -15,10 +15,10 @@ export class GithubStrategy extends PassportStrategy(githubPassport.Strategy, 'g
       passReqToCallback: true,
       store: {
         verify(req, state: string, meta: Metadata, callback: StateStoreVerifyCallback) {
-          callback(null, true, req.query.distinctId);
+          callback(null, true, req.query.token);
         },
         store(req, meta: Metadata, callback: StateStoreStoreCallback) {
-          callback(null, req.query.distinctId);
+          callback(null, req.query.token);
         },
       },
     });

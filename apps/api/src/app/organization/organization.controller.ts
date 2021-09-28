@@ -24,6 +24,8 @@ import { GetMembers } from './usecases/membership/get-members/get-members.usecas
 import { RemoveMember } from './usecases/membership/remove-member/remove-member.usecase';
 import { RemoveMemberCommand } from './usecases/membership/remove-member/remove-member.command';
 import { IGetMyOrganizationDto } from './dtos/get-my-organization.dto';
+import { OrganizationInvite } from './usecases/organization-invite/organization-invite.usecase';
+import { AcceptInviteUsecase } from './usecases/accept-invite/accept-invite.usecase';
 
 @Controller('/organizations')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -33,7 +35,9 @@ export class OrganizationController {
     private createOrganizationUsecase: CreateOrganization,
     private getMyOrganizationUsecase: GetMyOrganization,
     private getMembers: GetMembers,
-    private removeMemberUsecase: RemoveMember
+    private removeMemberUsecase: RemoveMember,
+    private organizationInviteUsecase: OrganizationInvite,
+    private acceptInciteUsecase: AcceptInviteUsecase
   ) {}
 
   @Post('/')
@@ -45,6 +49,8 @@ export class OrganizationController {
       userId: user._id,
       name: body.name,
       company: body.company,
+      color: body.color,
+      logo: body.logo,
     });
     const organization = await this.createOrganizationUsecase.execute(command);
 
@@ -82,5 +88,21 @@ export class OrganizationController {
     });
 
     return await this.getMyOrganizationUsecase.execute(command);
+  }
+
+  @Post('/invite')
+  async inviteToOrganization(@Body('emails') emails: string[], @UserSession() session: IJwtPayload) {
+    return await this.organizationInviteUsecase.execute({
+      emails,
+      organizationId: session.organizationId,
+    });
+  }
+
+  @Post('/invite/accept')
+  async acceptInvite(@Body('token') token: string, @UserSession() session: IJwtPayload) {
+    return await this.acceptInciteUsecase.execute({
+      organizationId: token,
+      userId: session._id,
+    });
   }
 }

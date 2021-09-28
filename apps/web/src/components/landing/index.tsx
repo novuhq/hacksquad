@@ -461,10 +461,10 @@ export function Footer() {
           </div>
           <div className="footer-column">
             <div className="title-grey-400">Other</div>
-            <a href="/sections/gallery" className="footer-link w-inline-block">
+            <a href="/terms" className="footer-link w-inline-block">
               <div>Terms</div>
             </a>
-            <a href="/sections/company" className="footer-link w-inline-block">
+            <a href="/privacy" className="footer-link w-inline-block">
               <div>Privacy</div>
             </a>
             <a href="/company/contact-3" className="footer-link w-inline-block">
@@ -475,11 +475,14 @@ export function Footer() {
         <div className="footer-line" />
         <div className="footer-legal-bar">
           <div className="w-layout-grid footer-socials">
-            <a href="/template/style-guide" className="footer-legal-link">
+            <a href="/" className="footer-legal-link">
               © HackSquad 2021
             </a>
           </div>
-          <a href="http://flowbase.co/store" target="_blank" className="footer-link footer-link-social w-inline-block">
+          <a
+            href="https://github.com/notifirehq/hacksquad"
+            target="_blank"
+            className="footer-link footer-link-social w-inline-block">
             <div className="text-block-2"></div>
           </a>
         </div>

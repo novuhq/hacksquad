@@ -29,7 +29,7 @@ export class AuthService {
     accessToken: string,
     refreshToken: string,
     profile: { name: string; login: string; email: string; avatar_url: string; id: string },
-    distinctId: string
+    token: string
   ) {
     let user = await this.userRepository.findByLoginProvider(profile.id, authProvider);
     let newUser = false;
@@ -53,11 +53,7 @@ export class AuthService {
       );
       newUser = true;
 
-      this.analyticsService.upsertUser(user, distinctId || user._id);
-
-      if (distinctId) {
-        this.analyticsService.alias(distinctId, user._id);
-      }
+      this.analyticsService.upsertUser(user, user._id);
     } else {
       this.analyticsService.track('[Authentication] - Login', user._id, {
         loginType: authProvider,

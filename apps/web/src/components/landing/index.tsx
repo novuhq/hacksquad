@@ -455,7 +455,7 @@ export function Footer() {
             <a href="/sections/cta" className="footer-link w-inline-block">
               <div>Resources</div>
             </a>
-            <a href="/sections/company" className="footer-link w-inline-block">
+            <a href="/assets" className="footer-link w-inline-block">
               <div>Logos &amp; Assets</div>
             </a>
           </div>

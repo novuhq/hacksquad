@@ -43,7 +43,6 @@ const PROVIDERS = [
   },
   MailService,
 ];
-
 @Module({
   imports: [],
   providers: [...PROVIDERS, AcceptInviteUsecase],

@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "cross-env TZ=UTC mono-run start:dev --stream 500",
+    "build:api": "node --max-old-space-size=1900 ./node_modules/.bin/lerna run build --ignore @hacksquad/web",
     "lint": "mono-run lint -- . --cache --ext .js,.jsx,.ts,.tsx",
     "test": "cross-env CI=true mono-run test:watch --stream --parallel",
     "clean": "lerna clean",

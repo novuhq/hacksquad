@@ -27,8 +27,6 @@ RUN yarn build
 
 WORKDIR /usr/src/app/packages/api
 
-RUN cp src/.env.production dist/src/.env.production
-RUN cp src/.env.ci dist/src/.env.ci
-RUN cp src/.env.development dist/src/.env.development
+RUN cp src/.env.test dist/src/.env.test
 
 CMD [ "pm2-runtime", "dist/src/main.js" ]

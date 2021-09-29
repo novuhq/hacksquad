@@ -66,8 +66,12 @@ export function NavigationBar() {
 
           {user && (
             <div className="account-buttons">
-              <Link href="/leaderboard" passHref onClick={() => trackAnalyticsEvent('leaderboard:my-team')}>
-                <a className="navigation-link-dark-signup w-button">My Team</a>
+              <Link href="/leaderboard" passHref>
+                <a
+                  className="navigation-link-dark-signup w-button"
+                  onClick={() => trackAnalyticsEvent('leaderboard:my-team')}>
+                  My Team
+                </a>
               </Link>
             </div>
           )}

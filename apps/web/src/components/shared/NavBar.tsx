@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { IJwtPayload } from '@hacksquad/shared';
 import { AUTH_URL } from '../../shared/api';
+import { isServerSide } from '../../shared/utils';
+import { getUser } from '../../shared/auth.service';
 
 export function NavigationBar() {
+  const [user, setUser] = useState<IJwtPayload>();
+
+  useEffect(() => {
+    if (!isServerSide()) {
+      const userData = getUser();
+      setUser(userData);
+    }
+  }, []);
+
   return (
     <NavigationWrapper>
       <NavigationContainer>
@@ -20,20 +33,41 @@ export function NavigationBar() {
           </Link>
         </div>
         <div className="navigation-right">
-          <a href="#" className="nav-link-light mr10 w-inline-block">
-            <div>Resources</div>
-          </a>
+          <Link href="/leaderboard" passHref>
+            <a className="nav-link-light mr10 w-inline-block">
+              <div>Leaderboard</div>
+            </a>
+          </Link>
+
+          <Link href="/resources" passHref>
+            <a className="nav-link-light mr10 w-inline-block">
+              <div>Resources</div>
+            </a>
+          </Link>
+
           <a
             target="_blank"
             href="https://github.com/notifirehq/hacksquad"
             className="nav-link-light mr10 nav-link-large w-inline-block">
             <div className="text-block-3"></div>
           </a>
-          <div className="account-buttons">
-            <a href={AUTH_URL} className="navigation-link-dark-signup w-button">
-              Join Now
-            </a>
-          </div>
+
+          {!user && (
+            <div className="account-buttons">
+              <a href={AUTH_URL} className="navigation-link-dark-signup w-button">
+                Join Now
+              </a>
+            </div>
+          )}
+
+          {user && (
+            <div className="account-buttons">
+              <Link href="/leaderboard" passHref>
+                <a className="navigation-link-dark-signup w-button">My Team</a>
+              </Link>
+            </div>
+          )}
+
           <div
             className="navigation-menu-dark w-nav-button"
             aria-label="menu"

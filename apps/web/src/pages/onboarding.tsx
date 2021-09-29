@@ -10,14 +10,15 @@ import { useRouter } from 'next/router';
 import { api, getSignedUrl } from '../shared/api';
 import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
-import { setToken } from '../shared/auth.service';
+import { getUser, setToken } from '../shared/auth.service';
+import { isServerSide } from '../shared/utils';
 
 const mimeTypes = {
   'image/jpeg': 'jpeg',
   'image/png': 'png',
 };
 
-export default function () {
+export default function Onboarding() {
   const router = useRouter();
   const [form] = Form.useForm();
   const [color, setColor] = useState<string>('#693C72');
@@ -25,6 +26,22 @@ export default function () {
   const [file, setFile] = useState<RcFile>();
   const [imageLoading, setImageLoading] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isServerSide()) {
+      const user = getUser();
+      if (user.organizationId) {
+        router.push('/leaderboard');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (file) {
+      handleUpload();
+    }
+  }, [file]);
+
   function beforeUpload(data: RcFile) {
     if (!mimeTypes[data.type]) {
       return false;
@@ -34,12 +51,6 @@ export default function () {
 
     return false;
   }
-
-  useEffect(() => {
-    if (file) {
-      handleUpload();
-    }
-  }, [file]);
 
   async function handleUpload() {
     if (!file) return;
@@ -178,7 +189,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={(
+                        content={
                           <BlockPicker
                             color={color}
                             triangle="hide"
@@ -186,7 +197,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        )}
+                        }
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>

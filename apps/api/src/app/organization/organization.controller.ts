@@ -6,11 +6,12 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { OrganizationEntity } from '@hacksquad/core';
-import { IJwtPayload, MemberRoleEnum } from '@hacksquad/shared';
+import { IJwtPayload, IOrganizationEntity, MemberRoleEnum } from '@hacksquad/shared';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from '../auth/framework/roles.decorator';
 import { UserSession } from '../shared/framework/user.decorator';
@@ -25,11 +26,10 @@ import { RemoveMember } from './usecases/membership/remove-member/remove-member.
 import { RemoveMemberCommand } from './usecases/membership/remove-member/remove-member.command';
 import { IGetMyOrganizationDto } from './dtos/get-my-organization.dto';
 import { OrganizationInvite } from './usecases/organization-invite/organization-invite.usecase';
-import { AcceptInviteUsecase } from './usecases/accept-invite/accept-invite.usecase';
+import { GetOrgByTokenUsecase } from './usecases/get-by-token/get-org-by-token.usecase';
 
 @Controller('/organizations')
 @UseInterceptors(ClassSerializerInterceptor)
-@UseGuards(AuthGuard('jwt'))
 export class OrganizationController {
   constructor(
     private createOrganizationUsecase: CreateOrganization,
@@ -37,10 +37,11 @@ export class OrganizationController {
     private getMembers: GetMembers,
     private removeMemberUsecase: RemoveMember,
     private organizationInviteUsecase: OrganizationInvite,
-    private acceptInciteUsecase: AcceptInviteUsecase
+    private getOrganizationByToken: GetOrgByTokenUsecase
   ) {}
 
   @Post('/')
+  @UseGuards(AuthGuard('jwt'))
   async createOrganization(
     @UserSession() user: IJwtPayload,
     @Body() body: CreateOrganizationDto
@@ -58,6 +59,7 @@ export class OrganizationController {
   }
 
   @Delete('/members/:memberId')
+  @UseGuards(AuthGuard('jwt'))
   @Roles(MemberRoleEnum.ADMIN)
   async removeMember(@UserSession() user: IJwtPayload, @Param('memberId') memberId: string) {
     return await this.removeMemberUsecase.execute(
@@ -70,6 +72,7 @@ export class OrganizationController {
   }
 
   @Get('/members')
+  @UseGuards(AuthGuard('jwt'))
   @Roles(MemberRoleEnum.ADMIN)
   async getMember(@UserSession() user: IJwtPayload) {
     return await this.getMembers.execute(
@@ -81,6 +84,7 @@ export class OrganizationController {
   }
 
   @Get('/me')
+  @UseGuards(AuthGuard('jwt'))
   async getMyOrganization(@UserSession() user: IJwtPayload): Promise<IGetMyOrganizationDto> {
     const command = GetMyOrganizationCommand.create({
       userId: user._id,
@@ -91,18 +95,19 @@ export class OrganizationController {
   }
 
   @Post('/invite')
+  @UseGuards(AuthGuard('jwt'))
   async inviteToOrganization(@Body('emails') emails: string[], @UserSession() session: IJwtPayload) {
     return await this.organizationInviteUsecase.execute({
       emails,
       organizationId: session.organizationId,
+      inviterName: session.firstName,
     });
   }
 
-  @Post('/invite/accept')
-  async acceptInvite(@Body('token') token: string, @UserSession() session: IJwtPayload) {
-    return await this.acceptInciteUsecase.execute({
-      organizationId: token,
-      userId: session._id,
+  @Get('/token/:token')
+  async getOrgByToken(@UserSession() user: IJwtPayload, @Param('token') token: string): Promise<OrganizationEntity> {
+    return await this.getOrganizationByToken.execute({
+      token,
     });
   }
 }

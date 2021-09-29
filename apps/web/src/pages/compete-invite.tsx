@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { IOrganizationEntity } from '@hacksquad/shared/src';
 import { Avatar, Spin } from 'antd';
 import { GithubLoginButton } from 'react-social-login-buttons';
-import { IOrganizationEntity } from '@hacksquad/shared/src';
+import { isServerSide } from '../shared/utils';
+import { getUser } from '../shared/auth.service';
+import { api, AUTH_URL } from '../shared/api';
 import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
-import { isServerSide } from '../shared/utils';
-import { api, AUTH_URL } from '../shared/api';
-import { getUser } from '../shared/auth.service';
 
-export default function AcceptInvite() {
+export default function CompeteInvite() {
   const router = useRouter();
   const [squad, setSquad] = useState<IOrganizationEntity>();
 
@@ -23,7 +23,7 @@ export default function AcceptInvite() {
     if (!isServerSide()) {
       const user = getUser();
 
-      if (user?.organizationId) {
+      if (user || user?.organizationId) {
         router.push('/leaderboard');
       }
     }
@@ -59,16 +59,12 @@ export default function AcceptInvite() {
         </Avatar>
 
         <div className="title-grey-400" style={{ marginBottom: -10, marginTop: 30 }}>
-          Accept your hacksquad invite
+          Accept your invite to participate against {squad?.name}
         </div>
         <h1 className="hero-heading-white" style={{ marginBottom: 70 }}>
-          Join
-          <span style={{ color: '#5ec6e8' }}> {squad?.name}</span>
+          <span style={{ color: '#5ec6e8' }}> {squad?.name}</span> invited you
         </h1>
-        <GithubLoginButton
-          style={{ maxWidth: 300 }}
-          onClick={() => window.open(`${AUTH_URL}?token=${router?.query?.token}`)}
-        />
+        <GithubLoginButton style={{ maxWidth: 300 }} onClick={() => window.open(`${AUTH_URL}`)} />
       </div>
 
       <Footer />

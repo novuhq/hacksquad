@@ -30,6 +30,16 @@ export class OrganizationRepository extends BaseRepository<OrganizationEntity> {
     );
   }
 
+  async getLeaderBoardOrganizations(organizationIds: string[]) {
+    const organizations = await Organization.find({
+      _id: {
+        $in: organizationIds,
+      },
+    }).populate('members.user', 'firstName lastName _id profilePicture username');
+
+    return this.mapEntities(organizations);
+  }
+
   async getOrganizationMembers(organizationId: string) {
     const organization = await Organization.findById(organizationId)
       .populate('members.user', 'firstName lastName email _id')

@@ -45,18 +45,26 @@ export function MainPageHero() {
           </div>
         </div>
         <div className="header-image">
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150dba88e067439ddf862fe_hackSquad-2021.png"
-            loading="lazy"
-            alt=""
-            className="hero-image"
-          />
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150a858f36d6885738ff836_logo-hacktoberfest-full2.aa1e9d9.svg"
-            loading="lazy"
-            alt=""
-            className="hero-image"
-          />
+          <a href="/" target="_blank" className="footer-link footer-link-social w-inline-block">
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150dba88e067439ddf862fe_hackSquad-2021.png"
+              loading="lazy"
+              alt=""
+              className="hero-image"
+            />
+          </a>
+
+          <a
+            href="https://hacktoberfest.digitalocean.com/"
+            target="_blank"
+            className="footer-link footer-link-social w-inline-block">
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150a858f36d6885738ff836_logo-hacktoberfest-full2.aa1e9d9.svg"
+              loading="lazy"
+              alt=""
+              className="hero-image"
+            />
+          </a>
         </div>
       </div>
       <img

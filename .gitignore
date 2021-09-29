@@ -11,6 +11,7 @@ dist
 .env.development
 .eslintcache
 
+.terraform
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -81,3 +82,11 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 .vercel
+
+# Compiled files
+*.tfstate
+*.tfstate.backup
+.terraform.tfstate.lock.info
+# Module directory
+.terraform/
+

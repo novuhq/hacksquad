@@ -41,10 +41,6 @@ locals {
   certificate_domain = "*.hacksquad.dev"
 }
 
-data "aws_ssm_parameter" "hacksquad_key" {
-  name = "/${terraform.workspace}/HACKSQUAD_API_KEY"
-}
-
 module "api" {
   source = "./web-service"
   app_name = "${local.prefix}-api"

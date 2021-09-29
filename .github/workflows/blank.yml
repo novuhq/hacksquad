@@ -9,7 +9,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -19,28 +19,112 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-      
+    - name: Setup kernel for react native, increase watchers
+      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '15.11.0'
+    - name: Start Redis
+      uses: supercharge/redis-github-action@1.2.0
+
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.3.0
       with:
         mongodb-version: 4.2.8
+
+    - name: restore lerna
+      uses: actions/cache@master
+      with:
+        path: |
+          node_modules
+          **/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
     # Runs a single command using the runners shell
-    - name: Run a one-line script
+    - name: Install project dependencies
       run: yarn install
-      
-    # Runs a single command using the runners shell
+
+      # Runs a single command using the runners shell
     - name: Bootstrap
       run: yarn run bootstrap
 
-    # Runs a set of commands using the runners shell
-    - name: Run a build
+      # Runs a single command using the runners shell
+    - name: Build API
+      run: CI='' yarn run build:api
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Terraform setup
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.4
+        terraform_wrapper: false
+
+    - name: Terraform Init
+      working-directory: terraform
+      run: terraform init
+
+    - name: Terraform Change Workspace
+      working-directory: terraform
+      run: terraform workspace select prod
+
+    - name: get-npm-version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+      with:
+        path: apps/api
+
+    - name: Terraform get output
+      working-directory: terraform
+      id: terraform
       run: |
-        yarn run build
-        
-        
-    # Runs a set of commands using the runners shell
-    - name: Run a test
+        echo "api_ecs_container_name=$(terraform output -json api_ecs_container_name | jq -r .)" >> $GITHUB_ENV
+        echo "api_ecs_service=$(terraform output -json api_ecs_service | jq -r .)" >> $GITHUB_ENV
+        echo "api_ecs_cluster=$(terraform output -json api_ecs_cluster | jq -r .)" >> $GITHUB_ENV
+        echo "api_task_name=$(terraform output -json api_task_name | jq -r .)" >> $GITHUB_ENV
+
+    - name: Download task definition
       run: |
-        cd apps/api && yarn run test:e2e
+        aws ecs describe-task-definition --task-definition ${{ env.api_task_name }} \
+        --query taskDefinition > task-definition.json
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: ${{ env.api_ecs_container_name }}
+        IMAGE_TAG: ${{ steps.package-version.outputs.current-version }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile.api .
+        docker run --network=host --name api -dit --env NODE_ENV=test $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker run --network=host appropriate/curl --retry 10 --retry-delay 5 --retry-connrefused http://localhost:1337/v1/health-check | grep 'ok'
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:prod
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:prod
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=IMAGE::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Render Amazon ECS task definition
+      id: render-web-container
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: ${{ env.api_ecs_container_name }}
+        image: ${{ steps.build-image.outputs.IMAGE }}
+
+    - name: Deploy to Amazon ECS service
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+        service: ${{ env.api_ecs_service }}
+        cluster: ${{ env.api_ecs_cluster }}
+        wait-for-service-stability: true

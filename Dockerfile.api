@@ -10,14 +10,13 @@ RUN npm i pm2 -g
 COPY package.json .
 RUN yarn install
 
-COPY packages/api ./packages/api
-COPY packages/core ./packages/core
-COPY packages/shared ./packages/shared
+COPY apps/api ./apps/api
+COPY libs/core ./libs/core
+COPY libs/shared ./libs/shared
 
 COPY lerna.json .
 COPY tsconfig.json .
 COPY tsconfig.base.json .
-COPY tslint.json .
 
 WORKDIR /usr/src/app/packages/api
 

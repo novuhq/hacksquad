@@ -67,9 +67,13 @@ resource "aws_ssm_parameter" "mongo_db_ssm" {
   }
 }
 
+data "aws_ssm_parameter" "atlas_org_id" {
+  name = "/GENERAL/ATLAS_ORG_ID"
+}
+
 resource "mongodbatlas_project" "group" {
   name = "Hacksquad - ${terraform.workspace} - DB"
-  org_id = var.atlas_org_id
+  org_id = data.aws_ssm_parameter.atlas_org_id.value
 }
 
 resource "random_password" "password" {

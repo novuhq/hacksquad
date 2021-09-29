@@ -3,8 +3,7 @@ ENV NODE_ENV=prod
 
 WORKDIR /usr/src/app
 
-RUN npm i lerna -g --loglevel notice
-RUN npm i yarn -g --loglevel notice
+RUN npm i yarn -g --loglevel notice --force
 RUN npm i pm2 -g
 
 COPY package.json .
@@ -22,10 +21,9 @@ WORKDIR /usr/src/app/packages/api
 
 WORKDIR /usr/src/app
 RUN yarn bootstrap
-RUN yarn build
+RUN yarn build:api
 
-WORKDIR /usr/src/app/packages/api
-
+WORKDIR /usr/src/app/apps/api
 RUN cp src/.env.test dist/src/.env.test
 
 CMD [ "pm2-runtime", "dist/src/main.js" ]

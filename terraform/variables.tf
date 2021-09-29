@@ -31,11 +31,6 @@ variable "atlas_region" {
   description = "Atlas Region"
 }
 
-variable "atlas_org_id" {
-  description = "Atlas Org ID"
-  default = "60a80f3002a6a87e1c803c0b"
-}
-
 variable "atlas_cluster_size" {
   description = "M10, M30"
   default = "M10"

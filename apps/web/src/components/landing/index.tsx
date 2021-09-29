@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { NavigationBar } from '../shared/NavBar';
-import { AUTH_URL } from '../../shared/api';
+import { api, AUTH_URL } from '../../shared/api';
+import { Leaderboard } from '../Leaderboard';
+import { isServerSide } from '../../shared/utils';
+import { getUser } from '../../shared/auth.service';
 import { trackAnalyticsEvent } from '../../shared/analytics.service';
 
 export function PageBanner() {
@@ -211,6 +215,18 @@ export function HowItWorksSection() {
 }
 
 export function FeaturedTeams() {
+  const [leaderboard, setLeaderboard] = useState<any[]>([]);
+
+  useEffect(() => {
+    loadLeaderboard();
+  }, []);
+
+  async function loadLeaderboard() {
+    const response = await api.get('/v1/leaderboard');
+
+    setLeaderboard(response.leaderboard);
+  }
+
   return (
     <div className="testimonial-section-dark">
       <div className="container">
@@ -221,161 +237,18 @@ export function FeaturedTeams() {
             <a href="#" className="link-white" />
           </h4>
         </div>
+        <div style={{ width: '100%', maxWidth: 700, margin: '0 auto' }}>
+          <Leaderboard items={leaderboard?.slice(0, 4)} />
+        </div>
         <div className="feature-wrapper">
-          <div className="w-layout-grid feature-grid-small">
-            <div className="testimoinal-card-dark">
-              <div className="team-wrapper">
-                <h1 className="heading-white fst">1</h1>
-                <img
-                  src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6130b55cdc153d6081632f4d_Avatar%20(Grey).png"
-                  loading="lazy"
-                  alt=""
-                  className="avatar-medium"
-                />
-                <div>
-                  <div className="testimonial-author-white">
-                    Team Name
-                    <span className="text-span">
-                      <br />
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="w-layout-grid grid">
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">32</h1>
-                  <h1 className="heading heading-small">Amount Commits</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">371</h1>
-                  <h1 className="heading heading-small"> Lines of Code</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">NodeJS</h1>
-                  <h1 className="heading heading-small">Languge</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">4</h1>
-                  <h1 className="heading heading-small">Team Members</h1>
-                </div>
-              </div>
-            </div>
-            <div className="testimoinal-card-dark">
-              <div className="team-wrapper">
-                <h1 className="heading-white snd">2</h1>
-                <img
-                  src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6130b55cdc153d6081632f4d_Avatar%20(Grey).png"
-                  loading="lazy"
-                  alt=""
-                  className="avatar-medium"
-                />
-                <div>
-                  <div className="testimonial-author-white">
-                    Team Name
-                    <span className="text-span">
-                      <br />
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="w-layout-grid grid">
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">32</h1>
-                  <h1 className="heading heading-small">Amount Commits</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">371</h1>
-                  <h1 className="heading heading-small"> Lines of Code</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">NodeJS</h1>
-                  <h1 className="heading heading-small">Languge</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">4</h1>
-                  <h1 className="heading heading-small">Team Members</h1>
-                </div>
-              </div>
-            </div>
-            <div className="testimoinal-card-dark">
-              <div className="team-wrapper">
-                <h1 className="heading-white trd">3</h1>
-                <img
-                  src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6130b55cdc153d6081632f4d_Avatar%20(Grey).png"
-                  loading="lazy"
-                  alt=""
-                  className="avatar-medium"
-                />
-                <div>
-                  <div className="testimonial-author-white">
-                    Team Name
-                    <span className="text-span">
-                      <br />
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="w-layout-grid grid">
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">32</h1>
-                  <h1 className="heading heading-small">Amount Commits</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">371</h1>
-                  <h1 className="heading heading-small"> Lines of Code</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">NodeJS</h1>
-                  <h1 className="heading heading-small">Languge</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">4</h1>
-                  <h1 className="heading heading-small">Team Members</h1>
-                </div>
-              </div>
-            </div>
-            <div className="testimoinal-card-dark">
-              <div className="team-wrapper">
-                <h1 className="heading-white _4th">4</h1>
-                <img
-                  src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6130b55cdc153d6081632f4d_Avatar%20(Grey).png"
-                  loading="lazy"
-                  alt=""
-                  className="avatar-medium"
-                />
-                <div>
-                  <div className="testimonial-author-white">
-                    Team Name
-                    <span className="text-span">
-                      <br />
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="w-layout-grid grid">
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">32</h1>
-                  <h1 className="heading heading-small">Amount Commits</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">371</h1>
-                  <h1 className="heading heading-small"> Lines of Code</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">NodeJS</h1>
-                  <h1 className="heading heading-small">Languge</h1>
-                </div>
-                <div className="testimoinal-detail">
-                  <h1 className="heading h3-title h3-color">4</h1>
-                  <h1 className="heading heading-small">Team Members</h1>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="background-dark-800" />
-          <div className="button-center">
-            <Link href="/leaderboard" onClick={() => trackAnalyticsEvent('leaderboard:full-standings')}>
-              <a className="button button-space w-button">Go to Leaderboard</a>
+          <div className="button-center" style={{ marginTop: 0 }}>
+            <Link href="/leaderboard">
+              <a
+                className="button button-space w-button"
+                onClick={() => trackAnalyticsEvent('leaderboard:full-standings')}>
+                Go to Leaderboard
+              </a>
             </Link>
           </div>
         </div>

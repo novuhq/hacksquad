@@ -164,7 +164,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Invite Others</div>
             <p className="body-medium text-neutral-400">
-              Invite your fellow developers, or company to join your team. Don't forget to invite your competitors as
+              Invite your fellow developers or company to join your team. Don't forget to invite your competitors as
               well.
             </p>
             <div className="div-block">
@@ -176,7 +176,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Contribute Code</div>
             <p className="body-medium text-neutral-400">
-              Just start to contribute code as a team. From big projects to small. Every language count.
+              Just start to contribute code as a team. From big projects to small ones. Every language count.
             </p>
             <div className="div-block">
               <a href="#" className="button-dark w-button">

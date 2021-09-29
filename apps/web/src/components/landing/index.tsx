@@ -47,18 +47,26 @@ export function MainPageHero() {
           </div>
         </div>
         <div className="header-image">
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150dba88e067439ddf862fe_hackSquad-2021.png"
-            loading="lazy"
-            alt=""
-            className="hero-image"
-          />
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150a858f36d6885738ff836_logo-hacktoberfest-full2.aa1e9d9.svg"
-            loading="lazy"
-            alt=""
-            className="hero-image"
-          />
+          <a href="/" target="_blank" className="footer-link footer-link-social w-inline-block">
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150dba88e067439ddf862fe_hackSquad-2021.png"
+              loading="lazy"
+              alt=""
+              className="hero-image"
+            />
+          </a>
+
+          <a
+            href="https://hacktoberfest.digitalocean.com/"
+            target="_blank"
+            className="footer-link footer-link-social w-inline-block">
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150a858f36d6885738ff836_logo-hacktoberfest-full2.aa1e9d9.svg"
+              loading="lazy"
+              alt=""
+              className="hero-image"
+            />
+          </a>
         </div>
       </div>
       <img
@@ -166,7 +174,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Invite Others</div>
             <p className="body-medium text-neutral-400">
-              Invite your fellow developers, or company to join your team. Don't forget to invite your competitors as
+              Invite your fellow developers or company to join your team. Don't forget to invite your competitors as
               well.
             </p>
             <div className="div-block">
@@ -178,7 +186,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Contribute Code</div>
             <p className="body-medium text-neutral-400">
-              Just start to contribute code as a team. From big projects to small. Every language count.
+              Just start to contribute code as a team. From big projects to small ones. Every language count.
             </p>
             <div className="div-block">
               <a href="#" className="button-dark w-button">
@@ -449,7 +457,7 @@ export function Footer() {
             <a href="/privacy" className="footer-link w-inline-block">
               <div>Privacy</div>
             </a>
-            <a href="/company/contact-3" className="footer-link w-inline-block">
+            <a href="/contact-us" className="footer-link w-inline-block">
               <div>Contact</div>
             </a>
           </div>

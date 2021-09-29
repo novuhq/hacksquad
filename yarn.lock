@@ -3472,6 +3472,18 @@
     multimatch "^4.0.0"
     typescript "~4.0.2"
 
+"@typeform/embed-react@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@typeform/embed-react/-/embed-react-1.1.2.tgz#143734618f3cb10bf306958fe69d76a49f35b553"
+  integrity sha512-bwSNNAEU7q9PsdM3u86/CFetJyCT9JbwZg/0kX9D/764GJXhThoU7M0e4XIvyb6r2if25BUN8jCxXA8TAXeawg==
+  dependencies:
+    "@typeform/embed" "^1.10.0"
+
+"@typeform/embed@^1.10.0":
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/@typeform/embed/-/embed-1.19.0.tgz#df878f2376c6edc891a076e2c5b4cad0039b46a6"
+  integrity sha512-cnQMZD/ergbzJCx8MEfi9+UmW4TumOkqUx+ln4h6Hyo/PeMK74JJFoGZCeAG7isOUg7SW5TkIGm/xrgtLGK+PQ==
+
 "@types/accepts@*", "@types/accepts@^1.3.5":
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@types/accepts/-/accepts-1.3.5.tgz#c34bec115cfc746e04fe5a059df4ce7e7b391575"

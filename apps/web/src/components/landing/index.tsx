@@ -467,7 +467,7 @@ export function Footer() {
             <a href="/privacy" className="footer-link w-inline-block">
               <div>Privacy</div>
             </a>
-            <a href="/company/contact-3" className="footer-link w-inline-block">
+            <a href="/contact-us" className="footer-link w-inline-block">
               <div>Contact</div>
             </a>
           </div>

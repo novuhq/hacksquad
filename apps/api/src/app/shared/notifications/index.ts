@@ -6,7 +6,7 @@ export const notifire = new Notifire({
   channels: {
     email: {
       from: {
-        email: 'support@hacksquad.dev',
+        email: 'support@notifire.co',
         name: 'Hacksquad Team',
       },
     },

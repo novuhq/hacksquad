@@ -5,7 +5,7 @@ import { AddMember } from './membership/add-member/add-member.usecase';
 import { GetMembers } from './membership/get-members/get-members.usecase';
 import { RemoveMember } from './membership/remove-member/remove-member.usecase';
 import { OrganizationInvite } from './organization-invite/organization-invite.usecase';
-import { AcceptInviteUsecase } from './accept-invite/accept-invite.usecase';
+import { GetOrgByTokenUsecase } from './get-by-token/get-org-by-token.usecase';
 
 export const USE_CASES = [
   AddMember,
@@ -15,5 +15,5 @@ export const USE_CASES = [
   GetMembers,
   RemoveMember,
   OrganizationInvite,
-  AcceptInviteUsecase,
+  GetOrgByTokenUsecase,
 ];

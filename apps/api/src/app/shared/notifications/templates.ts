@@ -6,9 +6,40 @@ export async function loadTemplates(notifire: Notifire) {
     messages: [
       {
         channel: ChannelTypeEnum.EMAIL,
-        subject: 'Join {{squadName}} squad',
+        subject: 'Join {{inviterName}} at {{squadName}}',
         template: buildLayout(`
-            <a href=""></a>
+            You've been invited by <b>{{inviterName}}</b> to join <b>{{squadName}}</b>,
+             and take part at the 2021 Hacksquad competition.
+             <br />
+              <div>
+                <div
+                  style="
+                    font-family: inherit;
+                    text-align: center;
+                  "
+                >
+                  <a style="
+                      line-height: 30px;
+                      display: inline-block;
+                      font-weight: 400;
+                      white-space: nowrap;
+                      text-align: center;
+                      border: 1px solid transparent;
+                      height: 32px;
+                      padding: 4px 15px;
+                      font-size: 14px;
+                      border-radius: 4px;
+                      color: white;
+                      background: {{#if branding.color}}{{branding.color}}{{else}}#ff6f61{{/if}};
+                      border-color: {{#if branding.color}}{{branding.color}}{{else}}#ff6f61{{/if}};
+                      text-decoration: none;
+                    "
+                     href="https://hacksquad.dev/accept-invite?token={{token}}"
+                     target="_blank">
+                    Join the Squad
+                  </a>
+                </div>
+              </div>
         `),
       },
     ],

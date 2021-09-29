@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { forwardRef, MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { authenticate } from 'passport';
@@ -11,6 +11,7 @@ import { USE_CASES } from './usecases';
 import { SharedModule } from '../shared/shared.module';
 import { GithubStrategy } from './services/passport/github.strategy';
 import { GqlAuthGuard } from './framework/gql-auth.guard';
+import { OrganizationModule } from '../organization/organization.module';
 
 const AUTH_STRATEGIES = [];
 
@@ -31,6 +32,7 @@ if (process.env.GITHUB_OAUTH_CLIENT_ID) {
         expiresIn: 360000,
       },
     }),
+    forwardRef(() => OrganizationModule),
   ],
   controllers: [AuthController],
   providers: [...USE_CASES, ...AUTH_STRATEGIES, JwtStrategy, AuthService, RolesGuard, GqlAuthGuard],

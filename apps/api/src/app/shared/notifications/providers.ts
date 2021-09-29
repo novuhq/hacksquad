@@ -5,7 +5,7 @@ export async function loadProviders(notifire: Notifire) {
   return await notifire.registerProvider(
     new SendgridEmailProvider({
       apiKey: process.env.SENDGRID_API_KEY,
-      from: 'support@notifire.dev',
+      from: 'support@notifire.co',
     })
   );
 }

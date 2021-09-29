@@ -11,6 +11,7 @@ import { OrganizationModule } from './app/organization/organization.module';
 import { CollectorModule } from './app/collector/collector.module';
 import { ProcessUserUsecase } from './app/collector/usecases/process-user/process-user.usecase';
 import { StorageModule } from './app/storage/storage.module';
+import { LeaderboardModule } from './app/leaderboard/leaderboard.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { StorageModule } from './app/storage/storage.module';
     AdminModule,
     CollectorModule,
     StorageModule,
+    LeaderboardModule,
   ],
   controllers: [],
   providers: [

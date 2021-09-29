@@ -27,13 +27,19 @@ export default function InvitePage() {
 
   async function submit({ emails }) {
     setLoading(true);
-    await api.post('/v1/organizations/invite', {
-      emails,
-    });
 
-    setLoading(false);
+    try {
+      await api.post('/v1/organizations/invite', {
+        emails: emails.filter((i) => i),
+      });
 
-    router.push('/leaderboard');
+      message.success('Invites sent successfully');
+      router.push('/leaderboard');
+    } catch (e) {
+      message.error('Error while sending invites');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -49,7 +55,7 @@ export default function InvitePage() {
                     {fields.map((field, index) => (
                       <Form.Item
                         {...(index === 0 ? formItemLayout : formItemLayout)}
-                        label={index === 0 ? 'Squad Members (up to 5)' : ''}
+                        label={index === 0 ? 'Squad Members (up to 5 including you)' : ''}
                         required={false}
                         key={field.key}>
                         <Form.Item
@@ -71,7 +77,7 @@ export default function InvitePage() {
                         ) : null}
                       </Form.Item>
                     ))}
-                    {fields.length < 5 ? (
+                    {fields.length < 4 ? (
                       <Form.Item>
                         <Button
                           type="dashed"

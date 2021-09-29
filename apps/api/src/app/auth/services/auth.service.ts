@@ -7,11 +7,13 @@ import {
   QueueService,
   MemberEntity,
   OrganizationRepository,
+  OrganizationEntity,
 } from '@hacksquad/core';
 import { AuthProviderEnum, IJwtPayload } from '@hacksquad/shared';
 
 import { CreateUserCommand } from '../../user/usecases/create-user/create-user.dto';
 import { CreateUser } from '../../user/usecases/create-user/create-user.usecase';
+import { AcceptInviteUsecase } from '../../shared/usecases/accept-invite/accept-invite.usecase';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +23,8 @@ export class AuthService {
     private jwtService: JwtService,
     private queueService: QueueService,
     private analyticsService: AnalyticsService,
-    private organizationRepository: OrganizationRepository
+    private organizationRepository: OrganizationRepository,
+    private acceptInvite: AcceptInviteUsecase
   ) {}
 
   async authenticate(
@@ -60,9 +63,30 @@ export class AuthService {
       });
     }
 
+    if (token) {
+      const organizations = await this.organizationRepository.findUserActiveOrganizations(user._id);
+
+      if (!organizations?.length) {
+        try {
+          await this.acceptInvite.execute({
+            userId: user._id,
+            organizationId: token,
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+
+    let organization: OrganizationEntity;
+    const organizations = await this.organizationRepository.findUserActiveOrganizations(user._id);
+    if (organizations?.length) {
+      [organization] = organizations;
+    }
+
     return {
       newUser,
-      token: await this.getSignedToken(user),
+      token: await this.getSignedToken(user, organization?._id),
     };
   }
 

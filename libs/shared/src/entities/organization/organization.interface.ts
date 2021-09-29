@@ -5,6 +5,7 @@ import { IMemberInvite, MemberStatusEnum } from './member.interface';
 export interface IOrganizationEntity {
   _id: string;
   name: string;
+  logo: string;
   members: {
     _id: string;
     _userId?: string;

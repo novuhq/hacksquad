@@ -9,6 +9,7 @@ import {
   OrganizationRepository,
   ContributionRepository,
 } from '@hacksquad/core';
+import { AcceptInviteUsecase } from './usecases/accept-invite/accept-invite.usecase';
 
 const DAL_MODELS = [UserRepository, OrganizationRepository, ContributionRepository];
 
@@ -45,7 +46,7 @@ const PROVIDERS = [
 
 @Module({
   imports: [],
-  providers: [...PROVIDERS],
-  exports: [...PROVIDERS],
+  providers: [...PROVIDERS, AcceptInviteUsecase],
+  exports: [...PROVIDERS, AcceptInviteUsecase],
 })
 export class SharedModule {}

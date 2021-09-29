@@ -21,7 +21,7 @@ export function PageBanner() {
             <a href="#" className="link-white link-bold">
               hacktoberfest
             </a>
-            , every commit count
+            , every commit counts
           </div>
         </div>
       </div>
@@ -36,9 +36,11 @@ export function MainPageHero() {
     <div className="header-section-dark">
       <div className="container home-header-grid">
         <div>
-          <div className="title-blue">Have fun</div>
+          <div className="title-blue">Join with your team</div>
           <h1 className="hero-heading-white">Friendly Open-Source Team Competition</h1>
-          <p className="body-large-400 max-width">Contribute Code. Help the community. Win Swag.</p>
+          <p className="body-large-400 max-width">
+            Join Hacktoberfest 2021. Contribute Code. Help the community. Win Swag.
+          </p>
           <div className="button-wrapper-centre">
             <a
               href={AUTH_URL}
@@ -254,11 +256,6 @@ export function FeaturedTeams() {
                   <h1 className="heading heading-small">Team Members</h1>
                 </div>
               </div>
-              <div className="div-block">
-                <a href="#" className="button-secondary w-button">
-                  See Statistics
-                </a>
-              </div>
             </div>
             <div className="testimoinal-card-dark">
               <div className="team-wrapper">
@@ -295,11 +292,6 @@ export function FeaturedTeams() {
                   <h1 className="heading h3-title h3-color">4</h1>
                   <h1 className="heading heading-small">Team Members</h1>
                 </div>
-              </div>
-              <div className="div-block">
-                <a href="#" className="button-secondary w-button">
-                  See Statistics
-                </a>
               </div>
             </div>
             <div className="testimoinal-card-dark">
@@ -338,11 +330,6 @@ export function FeaturedTeams() {
                   <h1 className="heading heading-small">Team Members</h1>
                 </div>
               </div>
-              <div className="div-block">
-                <a href="#" className="button-secondary w-button">
-                  See Statistics
-                </a>
-              </div>
             </div>
             <div className="testimoinal-card-dark">
               <div className="team-wrapper">
@@ -380,21 +367,13 @@ export function FeaturedTeams() {
                   <h1 className="heading heading-small">Team Members</h1>
                 </div>
               </div>
-              <div className="div-block">
-                <a href="#" className="button-secondary w-button">
-                  See Statistics
-                </a>
-              </div>
             </div>
           </div>
           <div className="background-dark-800" />
           <div className="button-center">
-            <a
-              href="/company/about-us-3"
-              className="button button-space w-button"
-              onClick={() => trackAnalyticsEvent('leaderboard:full-standings')}>
-              Full Standing list
-            </a>
+            <Link href="/leaderboard" onClick={() => trackAnalyticsEvent('leaderboard:full-standings')}>
+              <a className="button button-space w-button">Go to Leaderboard</a>
+            </Link>
           </div>
         </div>
       </div>

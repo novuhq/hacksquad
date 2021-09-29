@@ -1,14 +1,13 @@
-import { Connection, ConnectionOptions } from 'mongoose';
+import { Connection, ConnectOptions } from 'mongoose';
 import * as mongoose from 'mongoose';
 
 export class DalService {
   connection: Connection;
 
-  async connect(url: string, config: ConnectionOptions = {}) {
+  async connect(url: string, config: ConnectOptions = {}) {
     const instance = await mongoose.connect(url, {
       ...config,
-      autoReconnect: true,
-      useCreateIndex: true,
+      autoIndex: true,
     });
 
     this.connection = instance.connection;

@@ -7,6 +7,7 @@ RUN npm i yarn -g --loglevel notice --force
 RUN npm i pm2 -g
 
 COPY package.json .
+COPY yarn.lock .
 
 COPY apps/api ./apps/api
 COPY libs/core ./libs/core
@@ -15,8 +16,6 @@ COPY libs/shared ./libs/shared
 COPY lerna.json .
 COPY tsconfig.json .
 COPY tsconfig.base.json .
-
-WORKDIR /usr/src/app/packages/api
 
 WORKDIR /usr/src/app
 RUN yarn install

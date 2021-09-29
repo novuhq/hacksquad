@@ -11,11 +11,11 @@ export class BaseRepository<T> {
   }
 
   async count(query: any): Promise<number> {
-    return await this.MongooseModel.countDocuments(query);
+    return this.MongooseModel.countDocuments(query);
   }
 
   async aggregate(query: any[]): Promise<any> {
-    return await this.MongooseModel.aggregate(query);
+    return this.MongooseModel.aggregate(query);
   }
 
   async findById(id: string, select?: keyof T): Promise<T | null> {
@@ -57,7 +57,7 @@ export class BaseRepository<T> {
   }
 
   async createMany(data: T[]) {
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       this.MongooseModel.collection.insertMany(data, (err) => {
         resolve();
       });
@@ -76,8 +76,8 @@ export class BaseRepository<T> {
     });
 
     return {
-      matched: saved.nMatched,
-      modified: saved.nModified,
+      matched: saved.matchedCount,
+      modified: saved.modifiedCount,
     };
   }
 

@@ -6,7 +6,6 @@ import { UserModule } from './app/user/user.module';
 import { AuthModule } from './app/auth/auth.module';
 import { TestingModule } from './app/testing/testing.module';
 import { HealthModule } from './app/health/health.module';
-import { AdminModule } from './app/admin/admin.module';
 import { OrganizationModule } from './app/organization/organization.module';
 import { CollectorModule } from './app/collector/collector.module';
 import { ProcessUserUsecase } from './app/collector/usecases/process-user/process-user.usecase';
@@ -26,7 +25,6 @@ import { LeaderboardModule } from './app/leaderboard/leaderboard.module';
     UserModule,
     AuthModule,
     HealthModule,
-    AdminModule,
     CollectorModule,
     StorageModule,
     LeaderboardModule,

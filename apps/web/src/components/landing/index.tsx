@@ -53,9 +53,6 @@ export function MainPageHero() {
               Start now
             </a>
           </div>
-          <p className="body-small-400 max-width">
-            * HackSquad and Hacktoberfest are unaffiliated, both are created by different company for OS contribution.
-          </p>
         </div>
         <div className="header-image">
           <a href="/" target="_blank" className="footer-link footer-link-social w-inline-block">

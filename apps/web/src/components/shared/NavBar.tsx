@@ -35,7 +35,7 @@ export function NavigationBar() {
         </div>
         <div className="navigation-right">
           <Link href="/leaderboard" passHref>
-            <a className="nav-link-light mr10 w-inline-block">
+            <a className="nav-link-light mr10 w-inline-block" onClick={() => trackAnalyticsEvent('leaderboard:navbar')}>
               <div>Leaderboard</div>
             </a>
           </Link>
@@ -66,7 +66,7 @@ export function NavigationBar() {
 
           {user && (
             <div className="account-buttons">
-              <Link href="/leaderboard" passHref onClick={() => trackAnalyticsEvent('leaderboard:navbar')}>
+              <Link href="/leaderboard" passHref onClick={() => trackAnalyticsEvent('leaderboard:my-team')}>
                 <a className="navigation-link-dark-signup w-button">My Team</a>
               </Link>
             </div>

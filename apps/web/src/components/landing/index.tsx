@@ -170,7 +170,10 @@ export function HowItWorksSection() {
               Register with Github, and join your team, or open a new one with your unique name and colors.
             </p>
             <div className="div-block">
-              <a href="#" className="button-dark w-button" onClick={() => trackAnalyticsEvent('register:join-team')}>
+              <a
+                href={AUTH_URL}
+                className="button-dark w-button"
+                onClick={() => trackAnalyticsEvent('register:join-team')}>
                 Join Team
               </a>
             </div>
@@ -183,7 +186,7 @@ export function HowItWorksSection() {
             </p>
             <div className="div-block">
               <a
-                href="#"
+                href={AUTH_URL}
                 className="button-dark w-button"
                 onClick={() => trackAnalyticsEvent('register:invite-friends')}>
                 Invite Friends

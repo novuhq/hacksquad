@@ -36,10 +36,6 @@ variable "atlas_cluster_size" {
   default = "M10"
 }
 
-variable "vpc_id" {
-  default = "vpc-588e1333"
-}
-
 variable "ecs_secrets" {
   default = []
 }

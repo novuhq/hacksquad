@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { AUTH_URL } from '../../shared/api';
+import { trackAnalyticsEvent } from '../../shared/analytics.service';
 
 export function NavigationBar() {
   return (
@@ -30,7 +31,10 @@ export function NavigationBar() {
             <div className="text-block-3"></div>
           </a>
           <div className="account-buttons">
-            <a href={AUTH_URL} className="navigation-link-dark-signup w-button">
+            <a
+              href={AUTH_URL}
+              className="navigation-link-dark-signup w-button"
+              onClick={() => trackAnalyticsEvent('register:navbar')}>
               Join Now
             </a>
           </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { NavigationBar } from '../shared/NavBar';
 import { AUTH_URL } from '../../shared/api';
+import { trackAnalyticsEvent } from '../../shared/analytics.service';
 
 export function PageBanner() {
   return (
@@ -39,7 +40,10 @@ export function MainPageHero() {
           <h1 className="hero-heading-white">Friendly Open-Source Team Competition</h1>
           <p className="body-large-400 max-width">Contribute Code. Help the community. Win Swag.</p>
           <div className="button-wrapper-centre">
-            <a href={AUTH_URL} className="button button-space w-button">
+            <a
+              href={AUTH_URL}
+              className="button button-space w-button"
+              onClick={() => trackAnalyticsEvent('register:main-hero')}>
               Start now
             </a>
           </div>
@@ -164,7 +168,7 @@ export function HowItWorksSection() {
               Register with Github, and join your team, or open a new one with your unique name and colors.
             </p>
             <div className="div-block">
-              <a href="#" className="button-dark w-button">
+              <a href="#" className="button-dark w-button" onClick={() => trackAnalyticsEvent('register:join-team')}>
                 Join Team
               </a>
             </div>
@@ -176,7 +180,10 @@ export function HowItWorksSection() {
               well.
             </p>
             <div className="div-block">
-              <a href="#" className="button-dark w-button">
+              <a
+                href="#"
+                className="button-dark w-button"
+                onClick={() => trackAnalyticsEvent('register:invite-friends')}>
                 Invite Friends
               </a>
             </div>
@@ -382,7 +389,10 @@ export function FeaturedTeams() {
           </div>
           <div className="background-dark-800" />
           <div className="button-center">
-            <a href="/company/about-us-3" className="button button-space w-button">
+            <a
+              href="/company/about-us-3"
+              className="button button-space w-button"
+              onClick={() => trackAnalyticsEvent('leaderboard:full-standings')}>
               Full Standing list
             </a>
           </div>
@@ -400,7 +410,7 @@ export function SponsorsSection() {
           <h4 className="h4-title-white">Our Sponsors</h4>
         </div>
         <div className="w-layout-grid logo-centre">
-          <div>
+          <a href="https://notifire.co/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:notifire')}>
             <img
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White.png"
               loading="lazy"
@@ -408,28 +418,35 @@ export function SponsorsSection() {
               srcSet="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-500.png 500w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-800.png 800w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-1080.png 1080w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-1600.png 1600w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-2000.png 2000w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-2600.png 2600w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-3200.png 3200w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White.png 4048w"
               alt=""
             />
-          </div>
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e00f6eb1ae11ee270243_logo-1.svg"
-            loading="lazy"
-            id="w-node-d667362f-3d76-0aba-5d94-efeb72b93135-72b9312f"
-            alt=""
-            className="logo"
-          />
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e0895eb1c24e2506696f_panw-bridgecrew-closing-logo-lockup-white.svg"
-            loading="lazy"
-            id="w-node-d667362f-3d76-0aba-5d94-efeb72b93136-72b9312f"
-            alt=""
-            className="logo"
-          />
-          <img
-            src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6151a1dc5ce80b84a433d024_Logo%20-%20White.png"
-            loading="lazy"
-            id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b9312f"
-            alt=""
-            className="logo"
-          />
+          </a>
+          <a href="https://appwrite.io/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:appwrite')}>
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e00f6eb1ae11ee270243_logo-1.svg"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b93135-72b9312f"
+              alt=""
+              className="logo"
+            />
+          </a>
+          <a href="https://bridgecrew.io/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:bridgecrew')}>
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e0895eb1c24e2506696f_panw-bridgecrew-closing-logo-lockup-white.svg"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b93136-72b9312f"
+              alt=""
+              className="logo"
+            />
+          </a>
+
+          <a href="https://daily.dev/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:daily.dev')}>
+            <img
+              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6151a1dc5ce80b84a433d024_Logo%20-%20White.png"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b9312f"
+              alt=""
+              className="logo"
+            />
+          </a>
         </div>
       </div>
     </div>

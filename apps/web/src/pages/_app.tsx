@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import '../styles/wl-styles.less';
+import { initAnalytics } from '../shared/analytics.service';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -28,6 +29,7 @@ const theme = {
 };
 
 export default function App({ Component, pageProps }: any) {
+  initAnalytics();
   return (
     <>
       <GlobalStyle />

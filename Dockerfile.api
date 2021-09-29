@@ -1,4 +1,4 @@
-FROM node:11
+FROM node:15.11.0
 ENV NODE_ENV=prod
 
 WORKDIR /usr/src/app

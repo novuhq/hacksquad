@@ -32,7 +32,7 @@ export default function Onboarding() {
     if (!isServerSide()) {
       trackAnalyticsEvent('onboarding:started');
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (!isServerSide()) {
@@ -202,7 +202,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={
+                        content={(
                           <BlockPicker
                             color={color}
                             triangle="hide"
@@ -210,7 +210,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        }
+                        )}
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>

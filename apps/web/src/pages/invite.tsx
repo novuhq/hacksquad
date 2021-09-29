@@ -31,7 +31,7 @@ export default function InvitePage() {
     if (!isServerSide()) {
       trackAnalyticsEvent('invite:started');
     }
-  });
+  }, []);
 
   async function submit({ emails }) {
     setLoading(true);

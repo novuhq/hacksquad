@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { getToken } from './auth.service';
 
-export const API_ROOT = process.env.REACT_APP_API_URL
-  ? process.env.REACT_APP_API_URL || 'http://localhost:1336'
-  : process.env.REACT_APP_API_URL || 'http://localhost:3000';
+export const API_ROOT = process.env.NEXT_PUBLIC_API_URL
+  ? process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1336'
+  : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 export const AUTH_URL = `${API_ROOT}/v1/auth/github`;
 
 export const api = {

@@ -1,6 +1,38 @@
+data "aws_ssm_parameter" "github_client_id" {
+  name = "/${terraform.workspace}/GITHUB_OAUTH_CLIENT_ID"
+}
+
+data "aws_ssm_parameter" "github_client_secret" {
+  name = "/${terraform.workspace}/GITHUB_OAUTH_CLIENT_SECRET"
+}
+
+data "aws_ssm_parameter" "github_token" {
+  name = "/${terraform.workspace}/GITHUB_TOKEN"
+}
+
+data "aws_ssm_parameter" "sendgrid_api_key" {
+  name = "/${terraform.workspace}/SENDGRID_API_KEY"
+}
+
 locals {
   prefix = terraform.workspace
   api_secrets = concat([
+    {
+      valueFrom: data.aws_ssm_parameter.github_client_id.arn,
+      name: "GITHUB_OAUTH_CLIENT_ID"
+    },
+    {
+      valueFrom: data.aws_ssm_parameter.github_client_secret.arn,
+      name: "GITHUB_OAUTH_CLIENT_SECRET"
+    },
+    {
+      valueFrom: data.aws_ssm_parameter.github_token.arn,
+      name: "GITHUB_TOKEN"
+    },
+    {
+      valueFrom: data.aws_ssm_parameter.sendgrid_api_key.arn,
+      name: "SENDGRID_API_KEY"
+    },
     {
       valueFrom: aws_ssm_parameter.mongo_db_ssm.arn,
       name: "MONGO_URL"

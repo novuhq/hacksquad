@@ -40,8 +40,8 @@ export function MainPageHero() {
     <div className="header-section-dark">
       <div className="container home-header-grid">
         <div>
-          <div className="title-blue">Join with your team</div>
-          <h1 className="hero-heading-white">Friendly Open-Source Team Competition</h1>
+          <div className="title-blue">Join with your squad</div>
+          <h1 className="hero-heading-white">Friendly Open-Source Squad Competition</h1>
           <p className="body-large-400 max-width">
             Join Hacktoberfest 2021. Contribute Code. Help the community. Win Swag.
           </p>
@@ -171,9 +171,9 @@ export function HowItWorksSection() {
         </div>
         <div className="w-layout-grid company-grid">
           <div className="content-card-dark">
-            <div className="number-blue-large number-meduim">Join your Team</div>
+            <div className="number-blue-large number-meduim">Join a Squad</div>
             <p className="body-medium text-neutral-400">
-              Register with Github, and join your team, or open a new one with your unique name and colors.
+              Register with Github, and join your squad, or open a new one with your unique name and colors.
             </p>
             <div className="div-block">
               <a
@@ -187,7 +187,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Invite Others</div>
             <p className="body-medium text-neutral-400">
-              Invite your fellow developers or company to join your team. Don't forget to invite your competitors as
+              Invite your fellow developers or company to join your squad. Don't forget to invite your competitors as
               well.
             </p>
             <div className="div-block">
@@ -202,7 +202,7 @@ export function HowItWorksSection() {
           <div className="content-card-dark">
             <div className="number-blue-large number-meduim">Contribute Code</div>
             <p className="body-medium text-neutral-400">
-              Just start to contribute code as a team. From big projects to small ones. Every language count.
+              Just start to contribute code as a squad. From big projects to small ones. Every language count.
             </p>
             <div className="div-block">
               <Link href="/rules" passHref>
@@ -235,7 +235,7 @@ export function FeaturedTeams() {
     <div className="testimonial-section-dark">
       <div className="container">
         <div className="title-wrap-centre">
-          <h3 className="h3-title-white">The Teams</h3>
+          <h3 className="h3-title-white">The Squads</h3>
           <h4 className="body-large-400">
             Here are some the best
             <a href="#" className="link-white" />

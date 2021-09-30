@@ -38,7 +38,7 @@ export default function RulesPage() {
                   <h5 className="h4-title-white h4-no-space">
                     <span className="text-span-2"> </span>
 {' '}
-Join Team
+Join Squad
 </h5>
                 </div>
                 <div className="section wf-section">
@@ -80,7 +80,7 @@ Spam Commits
                   <h5 className="h4-title-white h4-no-space">
                     <span className="text-span-2"> </span>
 {' '}
-Abuse Teams
+Abuse Squads
 </h5>
                 </div>
                 <div className="section wf-section">
@@ -104,20 +104,21 @@ Igonred Commits or Ban
             <h4>Rules</h4>
             <ol role="list">
               <li>
-                Competition is for teams, a team can be from 1-5 participants, we encourage you to invite your friends and
-                colleagues to fill your team, maximum of 1 team per user.
+                Competition is for squads, a squad can be from 1-5 participants, we encourage you to invite your friends
+                and colleagues to fill your squad, maximum of 1 squad per user.
               </li>
               <li>
                 Just like hacktoberfest, we require a minimal amount of commits in order to qualify, a minimum of 15
-                commits per team are required.
+                commits per squad are required.
               </li>
               <li>
-                Competition will be on a global scope, i.e. team with the most commits will win 1st place. Coding languages,
-                location, companies, will be used for statistics, comparison, but not for local scope competition.
+                Competition will be on a global scope, i.e. squad with the most commits will win 1st place. Coding
+                languages, location, companies, will be used for statistics, comparison, but not for local scope
+                competition.
               </li>
               <li>
                 Only meaningful and approved (merged or not) commits will be counted. If you are using bots, scripts, or
-                spam pull request or not counted, teams who does that might be dropped from the competition. See more.
+                spam pull request or not counted, squads who does that might be dropped from the competition. See more.
               </li>
               <li>
                 Bad repos, i.e., approval of bad commits, not flagging spam as spam, or any type of bad behavior may
@@ -126,8 +127,8 @@ Igonred Commits or Ban
             </ol>
             <h4>Winning</h4>
             <p>
-              A team that won, don't worry, we will let you, and everyone else know :), will be contacted to get thier
-              address for shipment of the swag kit, as well as each will get a digital badge, with thier name, team
+              A squad that won, don't worry, we will let you, and everyone else know :), will be contacted to get their
+              address for shipment of the swag kit, as well as each will get a digital badge, with their name, squad
               name, position, year, just to show off.{' '}
             </p>
             <h5>Note</h5>

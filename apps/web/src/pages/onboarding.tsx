@@ -116,7 +116,7 @@ export default function Onboarding() {
       <NavigationBar />
       <div style={{ padding: '100px 10px' }}>
         <Row justify="center">
-          <Col span={6} xs={24}>
+          <Col md={6} xs={24}>
             <h1 className="hero-heading-white">
               Create
               <br />
@@ -126,7 +126,7 @@ your
             </h1>
           </Col>
 
-          <Col span={6} xs={24}>
+          <Col md={6} xs={24}>
             <Form form={form} layout="vertical" onFinish={submit}>
               <Form.Item>
                 <div

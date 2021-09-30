@@ -39,7 +39,7 @@ export default function LeaderboardPage() {
 
       <div style={{ padding: '0 10px' }}>
         <Row justify="center">
-          <Col span={10} sm={24} xs={24}>
+          <Col md={10} sm={24} xs={24}>
             <h1 className="hero-heading-white">
               The
               <br />
@@ -49,13 +49,13 @@ export default function LeaderboardPage() {
         </Row>
 
         <Row justify="center">
-          <Col span={10} sm={24} xs={24}>
+          <Col md={10} sm={24} xs={24}>
             <Leaderboard items={leaderboard} />
           </Col>
         </Row>
         {userTeam?.position > 10 && (
           <Row justify="center">
-            <Col span={10} sm={24} xs={24}>
+            <Col md={10} sm={24} xs={24}>
               <Leaderboard items={[userTeam]} />
             </Col>
           </Row>
@@ -64,7 +64,7 @@ export default function LeaderboardPage() {
         <Divider />
         {user?.organizationId && (
           <Row justify="center" style={{ marginBottom: 30 }}>
-            <Col span={10} sm={24} xs={24}>
+            <Col md={10} sm={24} xs={24}>
               <h1 style={{ fontSize: 24, marginBottom: 10, lineHeight: '24px' }} className="hero-heading-white">
                 Invite your Co-workers to compete
               </h1>

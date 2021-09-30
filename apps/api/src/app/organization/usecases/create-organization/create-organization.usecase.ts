@@ -54,6 +54,18 @@ export class CreateOrganization {
       }
     );
 
+    await this.userRepository.update(
+      {
+        _id: command.userId,
+      },
+      {
+        $set: {
+          promotionalsEnabled: command.promotionalsEnabled,
+          termsAndConditions: command.termsAndConditions,
+        },
+      }
+    );
+
     return organizationAfterChanges;
   }
 }

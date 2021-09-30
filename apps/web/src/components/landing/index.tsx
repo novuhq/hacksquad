@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { GithubLoginButton } from 'react-social-login-buttons';
 import { NavigationBar } from '../shared/NavBar';
 import { api, AUTH_URL } from '../../shared/api';
 import { Leaderboard } from '../Leaderboard';
@@ -46,12 +47,17 @@ export function MainPageHero() {
             Participate in Hacktoberfest 2021. Contribute Code. Help the community. Win Swag.
           </p>
           <div className="button-wrapper-centre">
-            <a
+            {/* <a
               href={AUTH_URL}
               className="button button-space w-button"
               onClick={() => trackAnalyticsEvent('register:main-hero')}>
               Start now
-            </a>
+            </a> */}
+            <GithubLoginButton
+              text="Sign up with GitHub"
+              style={{ maxWidth: 300 }}
+              onClick={() => window.open(`${AUTH_URL}`)}
+            />
           </div>
         </div>
         <div className="header-image">

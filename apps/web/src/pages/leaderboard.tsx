@@ -66,7 +66,7 @@ export default function LeaderboardPage() {
           <Row justify="center" style={{ marginBottom: 30 }}>
             <Col md={10} sm={24} xs={24}>
               <h1 style={{ fontSize: 24, marginBottom: 10, lineHeight: '24px' }} className="hero-heading-white">
-                Invite your Co-workers to compete
+                Invite your co-workers to compete
               </h1>
 
               <p>Got your squad ready? Invite some other squads to play against. And let the best squad win :)</p>
@@ -93,6 +93,20 @@ export default function LeaderboardPage() {
             </Col>
           </Row>
         )}
+
+        <Row justify="center" style={{ marginBottom: 30 }}>
+          <Col md={10} sm={24} xs={24}>
+            <h1 style={{ fontSize: 24, marginBottom: 10, lineHeight: '24px' }} className="hero-heading-white">
+              How calculate the leaderboard?
+            </h1>
+
+            <p>
+              Each 30 minutes we will scan your open-source GitHub contributions for repos that are "hacktoberfest"
+              participants, PR's that labeled "hacktoberfest-accepted" or merged during October 2021 will be counted.
+              Leaderboard will be calculated based on the approved PR's.
+            </p>
+          </Col>
+        </Row>
       </div>
       <Footer />
     </>

@@ -32,7 +32,7 @@ export class AuthService {
     accessToken: string,
     refreshToken: string,
     profile: { name: string; login: string; email: string; avatar_url: string; id: string },
-    token: string
+    parsedState: { token: string; promotionalsEnabled: boolean; termsAndConditions: boolean }
   ) {
     let user = await this.userRepository.findByLoginProvider(profile.id, authProvider);
     let newUser = false;
@@ -63,19 +63,33 @@ export class AuthService {
       });
     }
 
-    if (token) {
+    if (parsedState?.token) {
       const organizations = await this.organizationRepository.findUserActiveOrganizations(user._id);
 
       if (!organizations?.length) {
         try {
           await this.acceptInvite.execute({
             userId: user._id,
-            organizationId: token,
+            organizationId: parsedState?.token,
           });
         } catch (e) {
           console.error(e);
         }
       }
+    }
+
+    if (parsedState) {
+      await this.userRepository.update(
+        {
+          _id: user._id,
+        },
+        {
+          $set: {
+            promotionalsEnabled: parsedState.promotionalsEnabled,
+            termsAndConditions: parsedState.termsAndConditions,
+          },
+        }
+      );
     }
 
     let organization: OrganizationEntity;

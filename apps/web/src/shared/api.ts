@@ -7,12 +7,17 @@ export const API_ROOT = process.env.NEXT_PUBLIC_API_URL
 export const AUTH_URL = `${API_ROOT}/v1/auth/github`;
 
 export const api = {
+  get baseHeaders() {
+    return getToken()
+      ? {
+          Authorization: `Bearer ${getToken()}`,
+        }
+      : {};
+  },
   get(url: string) {
     return axios
       .get(`${API_ROOT}${url}`, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
+        headers: this.baseHeaders,
       })
       .then((response) => {
         return response.data?.data;
@@ -25,9 +30,7 @@ export const api = {
   put(url: string, payload) {
     return axios
       .put(`${API_ROOT}${url}`, payload, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
+        headers: this.baseHeaders,
       })
       .then((response) => response.data?.data)
       .catch((error) => {
@@ -38,9 +41,7 @@ export const api = {
   post(url: string, payload) {
     return axios
       .post(`${API_ROOT}${url}`, payload, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
+        headers: this.baseHeaders,
       })
       .then((response) => response.data?.data)
       .catch((error) => {

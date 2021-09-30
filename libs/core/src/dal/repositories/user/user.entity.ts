@@ -32,4 +32,7 @@ export class UserEntity {
   password?: string;
 
   createdAt: string;
+  promotionalsEnabled?: boolean;
+
+  termsAndConditions?: boolean;
 }

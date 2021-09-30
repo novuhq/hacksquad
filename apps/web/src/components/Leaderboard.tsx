@@ -64,11 +64,11 @@ function ListingItem({ data }: { data: any }) {
           <Avatar.Group>
             {data.squad?.members.map((member) => {
               return (
-                <Tooltip key={member._id} title={`${capitalize(member.firstName)}`} placement="top">
-                  <a target="_blank" href={`https://github.com/${member.username}`}>
+                <Tooltip key={member?._id} title={`${capitalize(member?.firstName)}`} placement="top">
+                  <a target="_blank" href={`https://github.com/${member?.username}`}>
                     <Avatar
                       style={{ backgroundColor: '#87d068' }}
-                      src={member.profilePicture}
+                      src={member?.profilePicture}
                       icon={<UserOutlined />}
                     />
                   </a>

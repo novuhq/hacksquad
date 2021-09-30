@@ -57,18 +57,6 @@ locals {
 
   environment_api = [
     {
-      name: "NODE_ENV",
-      value: terraform.workspace == "prod" ? "prod" : "dev"
-    },
-    {
-      name: "PORT",
-      value: "3000"
-    },
-    {
-      name: "FRONT_BASE_URL",
-      value: "https://hacksquad.dev"
-    },
-    {
       name: "S3_BUCKET_NAME",
       value: aws_s3_bucket.s3_bucket.bucket
     },

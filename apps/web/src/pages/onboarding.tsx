@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Button, Col, Form, Input, Row, Upload, Popover, Divider, message, Checkbox } from 'antd';
-import { InfoCircleOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, LoadingOutlined, PlusOutlined, RetweetOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { RcFile } from 'antd/es/upload';
 import { BlockPicker } from 'react-color';
@@ -14,7 +14,7 @@ import { Footer } from '../components/landing';
 import { getUser, setToken } from '../shared/auth.service';
 import { isServerSide } from '../shared/utils';
 import { trackAnalyticsEvent } from '../shared/analytics.service';
-import { fullColorList } from '../shared/content-generators.service';
+import { fullColorList, getRandomColor, getRandomName } from '../shared/content-generators.service';
 
 const mimeTypes = {
   'image/jpeg': 'jpeg',
@@ -24,7 +24,8 @@ const mimeTypes = {
 export default function Onboarding() {
   const router = useRouter();
   const [form] = Form.useForm();
-  const [color, setColor] = useState<string>('#693C72');
+  const [color, setColor] = useState<string>();
+
   const [image, setImage] = useState<string>();
   const [file, setFile] = useState<RcFile>();
   const [imageLoading, setImageLoading] = useState<boolean>(false);
@@ -34,6 +35,12 @@ export default function Onboarding() {
   useEffect(() => {
     if (!isServerSide()) {
       trackAnalyticsEvent('onboarding:started');
+    }
+  }, []);
+  useEffect(() => {
+    if (!isServerSide()) {
+      setColor(getRandomColor());
+      form.setFieldsValue({ name: getRandomName() });
     }
   }, []);
 
@@ -169,7 +176,17 @@ your
                 label="Squad Name"
                 tooltip="This is a required field"
                 name="name">
-                <Input size="large" placeholder="Write your fancy squad name here" />
+                <Input
+                  size="large"
+                  addonAfter={
+                    <RetweetOutlined
+                      onClick={() => {
+                        form.setFieldsValue({ name: getRandomName() });
+                      }}
+                    />
+                  }
+                  placeholder="Write your fancy squad name here"
+                />
               </Form.Item>
 
               <Form.Item
@@ -204,15 +221,16 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={(
+                        content={
                           <BlockPicker
                             color={color}
+                            colors={fullColorList}
                             triangle="hide"
                             onChange={(selectedColor) => {
                               setColor(selectedColor.hex);
                             }}
                           />
-                        )}
+                        }
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>
@@ -226,11 +244,11 @@ your
                   <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
                     I agree to the
                     <Link href="/rules"> rules</Link>
-,<Link href="/privacy"> privacy policy</Link>
-{' '}
-and
+                    ,<Link href="/privacy"> privacy policy</Link>
+                    {' '}
+                    and
 <Link href="/terms"> terms and conditions</Link>
-.
+                    .
 </Checkbox>
                 </Form.Item>
                 <Form.Item valuePropName="checked" name="promotionalsEnabled">

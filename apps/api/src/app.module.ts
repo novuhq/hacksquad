@@ -57,7 +57,6 @@ export class AppModule implements OnModuleInit {
 
       for (const user of users) {
         // eslint-disable-next-line no-console
-        console.log('Processing user: ', user.username);
         await this.queueService.userProcessQueue.add(
           {
             userId: user._id,

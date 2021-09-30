@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Button, Col, Form, Input, Row, Upload, Popover, Divider, message } from 'antd';
+import { Button, Col, Form, Input, Row, Upload, Popover, Divider, message, Checkbox } from 'antd';
 import { InfoCircleOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { RcFile } from 'antd/es/upload';
@@ -7,6 +7,7 @@ import { BlockPicker } from 'react-color';
 
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { api, getSignedUrl } from '../shared/api';
 import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
@@ -27,7 +28,7 @@ export default function Onboarding() {
   const [file, setFile] = useState<RcFile>();
   const [imageLoading, setImageLoading] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
-
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   useEffect(() => {
     if (!isServerSide()) {
       trackAnalyticsEvent('onboarding:started');
@@ -111,6 +112,14 @@ export default function Onboarding() {
     return true;
   }
 
+  function onFormChange(_, values) {
+    if (!values.termsAndConditions) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+  }
+
   return (
     <>
       <NavigationBar />
@@ -127,7 +136,15 @@ your
           </Col>
 
           <Col md={6} xs={24}>
-            <Form form={form} layout="vertical" onFinish={submit}>
+            <Form
+              onValuesChange={onFormChange}
+              initialValues={{
+                termsAndConditions: true,
+                promotionalsEnabled: true,
+              }}
+              form={form}
+              layout="vertical"
+              onFinish={submit}>
               <Form.Item>
                 <div
                   style={{ textAlign: 'center' }}
@@ -220,7 +237,22 @@ your
                   />
                 </Popover>
               </Form.Item>
-              <Divider />
+              <div style={{ margin: '0px 0', color: 'white' }}>
+                <Form.Item valuePropName="checked" name="termsAndConditions">
+                  <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
+                    I agree to the
+                    <Link href="/privacy"> privacy policy</Link>
+{' '}
+and<Link href="/terms"> terms and conditions</Link>
+.
+</Checkbox>
+                </Form.Item>
+                <Form.Item valuePropName="checked" name="promotionalsEnabled">
+                  <Checkbox style={{ marginBottom: '20px', color: 'white', fontWeight: 'normal' }}>
+                    I agree to receive promotional emails from notifire.
+                  </Checkbox>
+                </Form.Item>
+              </div>
               <Form.Item>
                 <Button
                   onClick={() => {
@@ -230,7 +262,7 @@ your
                   size="large"
                   htmlType="submit"
                   type="primary"
-                  disabled={imageLoading}
+                  disabled={imageLoading || buttonDisabled}
                   loading={loadingSubmit}>
                   CREATE ACCOUNT
                 </Button>

@@ -20,4 +20,8 @@ export class CreateOrganizationCommand extends AuthenticatedCommand {
   @IsOptional()
   @IsUrl()
   public readonly logo: string;
+
+  promotionalsEnabled?: boolean;
+
+  termsAndConditions?: boolean;
 }

@@ -15,10 +15,21 @@ export class GithubStrategy extends PassportStrategy(githubPassport.Strategy, 'g
       passReqToCallback: true,
       store: {
         verify(req, state: string, meta: Metadata, callback: StateStoreVerifyCallback) {
-          callback(null, true, req.query.token);
+          callback(null, true, {
+            token: req.query.token,
+            promotionalsEnabled: req.query.promotionalsEnabled,
+            termsAndConditions: req.query.termsAndConditions,
+          });
         },
         store(req, meta: Metadata, callback: StateStoreStoreCallback) {
-          callback(null, req.query.token);
+          callback(
+            null,
+            JSON.stringify({
+              token: req.query.token,
+              promotionalsEnabled: req.query.promotionalsEnabled,
+              termsAndConditions: req.query.termsAndConditions,
+            })
+          );
         },
       },
     });
@@ -26,12 +37,17 @@ export class GithubStrategy extends PassportStrategy(githubPassport.Strategy, 'g
 
   async validate(req, accessToken: string, refreshToken: string, profile, done: (err, data) => void) {
     try {
+      let parsedState;
+      try {
+        parsedState = JSON.parse(req.query.state);
+      } catch (e) {}
+
       const response = await this.authService.authenticate(
         AuthProviderEnum.GITHUB,
         accessToken,
         refreshToken,
         profile._json,
-        req.query.state
+        parsedState
       );
 
       done(null, {

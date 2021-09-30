@@ -19,4 +19,8 @@ export class CreateOrganizationDto implements ICreateOrganizationDto {
 
   @IsOptional()
   logo?: string;
+
+  promotionalsEnabled?: boolean;
+
+  termsAndConditions?: boolean;
 }

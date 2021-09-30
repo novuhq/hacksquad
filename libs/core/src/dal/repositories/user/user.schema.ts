@@ -11,6 +11,8 @@ const userSchema = new Schema(
     profilePicture: Schema.Types.String,
     username: Schema.Types.String,
     profile: Schema.Types.Mixed,
+    promotionalsEnabled: Schema.Types.Boolean,
+    termsAndConditions: Schema.Types.Boolean,
     tokens: [
       {
         providerId: Schema.Types.String,

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Avatar, Spin } from 'antd';
+import { Avatar, Checkbox, Form, Spin } from 'antd';
 import { GithubLoginButton } from 'react-social-login-buttons';
 import { IOrganizationEntity } from '@hacksquad/shared/src';
+import Link from 'next/link';
+import styled, { css } from 'styled-components';
 import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
 import { isServerSide } from '../shared/utils';
@@ -12,7 +14,11 @@ import { getUser } from '../shared/auth.service';
 export default function AcceptInvite() {
   const router = useRouter();
   const [squad, setSquad] = useState<IOrganizationEntity>();
-
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [formData, setFormData] = useState({
+    termsAndConditions: true,
+    promotionalsEnabled: true,
+  });
   useEffect(() => {
     if (!isServerSide() && router.query.token) {
       loadInviteSquad(router.query.token as string);
@@ -24,7 +30,7 @@ export default function AcceptInvite() {
       const user = getUser();
 
       if (user?.organizationId) {
-        router.push('/leaderboard');
+        // router.push('/leaderboard');
       }
     }
   }, []);
@@ -42,6 +48,15 @@ export default function AcceptInvite() {
     );
   }
 
+  function formChanged(_, values) {
+    if (!values.termsAndConditions) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+
+    setFormData(values);
+  }
   return (
     <>
       <NavigationBar />
@@ -65,13 +80,55 @@ export default function AcceptInvite() {
           Join
           <span style={{ color: '#5ec6e8' }}> {squad?.name}</span>
         </h1>
-        <GithubLoginButton
-          style={{ maxWidth: 300 }}
-          onClick={() => window.open(`${AUTH_URL}?token=${router?.query?.token}`)}
-        />
+        <Form
+          onValuesChange={formChanged}
+          initialValues={{
+            promotionalsEnabled: true,
+            termsAndConditions: true,
+          }}>
+          <div style={{ margin: '0px 0', color: 'white' }}>
+            <Form.Item valuePropName="checked" name="termsAndConditions">
+              <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
+                I agree to the
+                <Link href="/privacy"> privacy policy</Link>
+{' '}
+and<Link href="/terms"> terms and conditions</Link>
+.
+</Checkbox>
+            </Form.Item>
+            <Form.Item valuePropName="checked" name="promotionalsEnabled">
+              <Checkbox style={{ marginBottom: '20px', color: 'white', fontWeight: 'normal' }}>
+                I agree to receive promotional emails from notifire.
+              </Checkbox>
+            </Form.Item>
+          </div>
+          <ButtonWrapper disabled={buttonDisabled}>
+            <GithubLoginButton
+              style={{ maxWidth: 300 }}
+              onClick={() =>
+                window.open(
+                  `${AUTH_URL}?token=${router?.query?.token}&promotionalsEnabled=${formData?.promotionalsEnabled}&termsAndConditions=${formData?.termsAndConditions}`
+                )}
+            />
+          </ButtonWrapper>
+        </Form>
       </div>
 
       <Footer />
     </>
   );
 }
+
+const ButtonWrapper = styled.div<{ disabled: boolean }>`
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          pointer-events: none;
+          opacity: 0.5;
+        `
+      : null}
+`;

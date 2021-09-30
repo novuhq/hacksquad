@@ -55,7 +55,7 @@ export default function InvitePage() {
       <NavigationBar />
       <Wrapper style={{ padding: '100px 0' }}>
         <Row justify="center" gutter={100}>
-          <Col span={6}>
+          <Col md={6} xs={24}>
             <Form form={form} layout="vertical" initialValues={{ emails: ['', '', ''] }} onFinish={submit}>
               <Form.List name="emails" rules={[]}>
                 {(fields, { add, remove }, { errors }) => (
@@ -131,7 +131,7 @@ export default function InvitePage() {
             </div>
           </Col>
 
-          <Col span={6}>
+          <Col md={6} xs={24}>
             <h1 className="hero-heading-white">
               Invite
               <br />

@@ -129,11 +129,12 @@ your
           <Col span={6}>
             <Form form={form} layout="vertical" onFinish={submit}>
               <Form.Item>
-                <div style={{ textAlign: 'center' }}>
+                <div
+                  style={{ textAlign: 'center' }}
+                  onClick={() => {
+                    trackAnalyticsEvent('onboarding:select-logo');
+                  }}>
                   <Upload
-                    onClick={() => {
-                      trackAnalyticsEvent('onboarding:select-logo');
-                    }}
                     accept={Object.keys(mimeTypes).join(', ')}
                     name="avatar"
                     listType="picture-card"
@@ -202,7 +203,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={(
+                        content={
                           <BlockPicker
                             color={color}
                             triangle="hide"
@@ -210,7 +211,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        )}
+                        }
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>

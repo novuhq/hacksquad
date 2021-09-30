@@ -8,6 +8,7 @@ import { api } from '../shared/api';
 import { isServerSide } from '../shared/utils';
 import { getUser } from '../shared/auth.service';
 import { Leaderboard } from '../components/Leaderboard';
+import { trackAnalyticsEvent } from '../shared/analytics.service';
 
 export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<any[]>([]);
@@ -80,6 +81,7 @@ export default function LeaderboardPage() {
                     onClick={() => {
                       navigator.clipboard.writeText(INVITE_LINK);
                       message.success('Invite link copied successfully');
+                      trackAnalyticsEvent('leaderboards:copy-link');
                     }}>
                     Copy Link
                   </Button>

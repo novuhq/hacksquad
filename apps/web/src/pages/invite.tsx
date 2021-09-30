@@ -4,10 +4,12 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api, getSignedUrl } from '../shared/api';
 import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
+import { trackAnalyticsEvent } from '../shared/analytics.service';
+import { isServerSide } from '../shared/utils';
 
 const formItemLayout = {
   labelCol: {
@@ -24,6 +26,12 @@ export default function InvitePage() {
   const [form] = Form.useForm();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>();
+
+  useEffect(() => {
+    if (!isServerSide()) {
+      trackAnalyticsEvent('invite:started');
+    }
+  }, []);
 
   async function submit({ emails }) {
     setLoading(true);
@@ -95,7 +103,15 @@ export default function InvitePage() {
               <Divider />
 
               <Form.Item>
-                <Button size="large" type="primary" block htmlType="submit" loading={loading}>
+                <Button
+                  size="large"
+                  type="primary"
+                  block
+                  htmlType="submit"
+                  loading={loading}
+                  onClick={() => {
+                    trackAnalyticsEvent('invite:send-invite');
+                  }}>
                   INVITE
                 </Button>
               </Form.Item>
@@ -103,7 +119,12 @@ export default function InvitePage() {
 
             <div style={{ textAlign: 'center' }}>
               <Link href="/leaderboard">
-                <Button type="link" style={{ color: '#cfcfcf' }}>
+                <Button
+                  type="link"
+                  style={{ color: '#cfcfcf' }}
+                  onClick={() => {
+                    trackAnalyticsEvent('invite:skip-invite');
+                  }}>
                   Skip and invite later
                 </Button>
               </Link>

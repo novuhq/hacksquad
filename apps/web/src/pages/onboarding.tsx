@@ -12,6 +12,7 @@ import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
 import { getUser, setToken } from '../shared/auth.service';
 import { isServerSide } from '../shared/utils';
+import { trackAnalyticsEvent } from '../shared/analytics.service';
 
 const mimeTypes = {
   'image/jpeg': 'jpeg',
@@ -26,6 +27,12 @@ export default function Onboarding() {
   const [file, setFile] = useState<RcFile>();
   const [imageLoading, setImageLoading] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isServerSide()) {
+      trackAnalyticsEvent('onboarding:started');
+    }
+  }, []);
 
   useEffect(() => {
     if (!isServerSide()) {
@@ -124,6 +131,9 @@ your
               <Form.Item>
                 <div style={{ textAlign: 'center' }}>
                   <Upload
+                    onClick={() => {
+                      trackAnalyticsEvent('onboarding:select-logo');
+                    }}
                     accept={Object.keys(mimeTypes).join(', ')}
                     name="avatar"
                     listType="picture-card"
@@ -160,6 +170,9 @@ your
               <Form.Item label="Pick your squad color">
                 <Popover
                   trigger="click"
+                  onClick={() => {
+                    trackAnalyticsEvent('onboarding:select-color');
+                  }}
                   content={
                     <BlockPicker
                       color={color}
@@ -189,7 +202,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={
+                        content={(
                           <BlockPicker
                             color={color}
                             triangle="hide"
@@ -197,7 +210,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        }
+                        )}
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>
@@ -209,6 +222,9 @@ your
               <Divider />
               <Form.Item>
                 <Button
+                  onClick={() => {
+                    trackAnalyticsEvent('onboarding:create-account');
+                  }}
                   block
                   size="large"
                   htmlType="submit"

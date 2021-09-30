@@ -89,12 +89,11 @@ export default function AcceptInvite() {
           <div style={{ margin: '0px 0', color: 'white' }}>
             <Form.Item valuePropName="checked" name="termsAndConditions">
               <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
-                I agree to the
-                <Link href="/privacy"> privacy policy</Link>
+                I agree to the <Link href="/rules"> rules</Link>,<Link href="/privacy"> privacy policy</Link>
 {' '}
-and<Link href="/terms"> terms and conditions</Link>
-.
-</Checkbox>
+and
+<Link href="/terms"> terms and conditions</Link>.
+              </Checkbox>
             </Form.Item>
             <Form.Item valuePropName="checked" name="promotionalsEnabled">
               <Checkbox style={{ marginBottom: '20px', color: 'white', fontWeight: 'normal' }}>

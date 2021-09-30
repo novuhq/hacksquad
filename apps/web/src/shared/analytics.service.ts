@@ -1,13 +1,17 @@
-import * as mixpanel from 'mixpanel-browser';
-
-export function initAnalytics() {
-  if (process.env.NEXT_PUBLIC_ANALYTICS_ID) {
-    mixpanel.init(process.env.NEXT_PUBLIC_ANALYTICS_ID);
-  }
-}
-
 export function trackAnalyticsEvent(eventName: string, eventProps?: any): void {
-  if (mixpanel.track && process.env.NEXT_PUBLIC_ANALYTICS_ID) {
-    mixpanel.track(eventName, eventProps);
-  }
+  event({ action: eventName, params: eventProps });
 }
+
+export const pageview = (url) => {
+  if ((window as any).gtag) {
+    (window as any).gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+      page_path: url,
+    });
+  }
+};
+
+export const event = ({ action, params }) => {
+  if ((window as any).gtag) {
+    (window as any).gtag('event', action, params);
+  }
+};

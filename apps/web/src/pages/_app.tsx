@@ -1,6 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import '../styles/wl-styles.less';
-import { initAnalytics } from '../shared/analytics.service';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { pageview } from '../shared/analytics.service';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -29,7 +31,24 @@ const theme = {
 };
 
 export default function App({ Component, pageProps }: any) {
-  initAnalytics();
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      pageview(url);
+    };
+
+    // When the component is mounted, subscribe to router changes
+    // and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <>
       <GlobalStyle />

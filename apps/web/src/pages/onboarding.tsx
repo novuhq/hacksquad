@@ -14,6 +14,7 @@ import { Footer } from '../components/landing';
 import { getUser, setToken } from '../shared/auth.service';
 import { isServerSide } from '../shared/utils';
 import { trackAnalyticsEvent } from '../shared/analytics.service';
+import { fullColorList } from '../shared/content-generators.service';
 
 const mimeTypes = {
   'image/jpeg': 'jpeg',
@@ -184,17 +185,7 @@ your
                   content={
                     <BlockPicker
                       color={color}
-                      colors={[
-                        '#693C72',
-                        '#F64662',
-                        '#005874',
-                        '#DD4747',
-                        '#511E78',
-                        '#259F6C',
-                        '#FFBE00',
-                        '#5170FD',
-                        '#F4ABC4',
-                      ]}
+                      colors={fullColorList}
                       triangle="hide"
                       onChange={(selectedColor) => {
                         setColor(selectedColor.hex);
@@ -235,11 +226,11 @@ your
                   <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
                     I agree to the
                     <Link href="/rules"> rules</Link>
-                    ,<Link href="/privacy"> privacy policy</Link>
-                    {' '}
-                    and
+,<Link href="/privacy"> privacy policy</Link>
+{' '}
+and
 <Link href="/terms"> terms and conditions</Link>
-                    .
+.
 </Checkbox>
                 </Form.Item>
                 <Form.Item valuePropName="checked" name="promotionalsEnabled">

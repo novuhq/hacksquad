@@ -19,13 +19,13 @@ export default function Home() {
 
       <MainPageHero />
 
+      <SponsorsSection />
+
       <ValuesSection />
 
       <HowItWorksSection />
 
       <FeaturedTeams />
-
-      <SponsorsSection />
 
       <Footer />
     </div>

@@ -1381,6 +1381,16 @@ blockquote {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   -ms-grid-rows: auto auto;
   grid-template-rows: auto auto;
+  // filter: grayscale(100%);
+
+  img {
+    transition: opacity .3s ease-in;
+    opacity: .8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
 }
 
 .logo-centre.margin-below-32 {

@@ -105,9 +105,11 @@ export function ValuesSection() {
                   <a className="button button-space w-button">Rules</a>
                 </Link>
 
-                <a href="#" className="button-dark w-button">
-                  Resources
-                </a>
+                <Link href="/rules" passHref>
+                  <a href="/resources" className="button-dark w-button">
+                    Resources
+                  </a>
+                </Link>
               </div>
             </div>
             <div id="w-node-_514b032d-d573-f43d-3da9-16dbc81ff8f2-c81ff8e0" className="w-layout-grid feature-card-grid">
@@ -203,9 +205,11 @@ export function HowItWorksSection() {
               Just start to contribute code as a team. From big projects to small ones. Every language count.
             </p>
             <div className="div-block">
-              <a href="#" className="button-dark w-button">
-                Find Repos
-              </a>
+              <Link href="/rules" passHref>
+                <a href="#" className="button-dark w-button">
+                  Find Repos
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -332,7 +336,7 @@ export function Footer() {
               </a>
             </Link>
 
-            <a href="/sections/cta" className="footer-link w-inline-block">
+            <a href="/resources" className="footer-link w-inline-block">
               <div>Resources</div>
             </a>
             <a href="/assets" className="footer-link w-inline-block">

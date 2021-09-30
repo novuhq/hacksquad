@@ -263,13 +263,19 @@ export function FeaturedTeams() {
 
 export function SponsorsSection() {
   return (
-    <div className="customer-section-dark">
+    <div className="customer-section-dark" style={{ marginTop: -160 }}>
       <div className="container">
         <div className="title-wrap-centre-small">
-          <h4 className="h4-title-white">Our Sponsors</h4>
+          <h4 className="h4-title-white" style={{ fontSize: 20, marginBottom: -30, color: '#bbb' }}>
+            Sponsored by
+          </h4>
         </div>
         <div className="w-layout-grid logo-centre">
-          <a href="https://notifire.co/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:notifire')}>
+          <a
+            href="https://notifire.co/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:notifire')}
+            style={{ position: 'relative', top: -5 }}>
             <img
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White.png"
               loading="lazy"
@@ -289,6 +295,7 @@ export function SponsorsSection() {
           </a>
           <a href="https://bridgecrew.io/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:bridgecrew')}>
             <img
+              style={{ width: 150, position: 'relative', top: 8 }}
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e0895eb1c24e2506696f_panw-bridgecrew-closing-logo-lockup-white.svg"
               loading="lazy"
               id="w-node-d667362f-3d76-0aba-5d94-efeb72b93136-72b9312f"

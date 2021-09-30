@@ -139,7 +139,7 @@ export function ValuesSection() {
                 />
                 <h5 className="heading-white">Developers Community</h5>
                 <p className="body-medium">
-                  Open source is much more than just accessible code. It's being part of a community, educate peers,
+                  Open source is much more than just accessible code. It's about being part of a community, educate peers,
                   learn together, help projects, have fun.
                 </p>
               </div>

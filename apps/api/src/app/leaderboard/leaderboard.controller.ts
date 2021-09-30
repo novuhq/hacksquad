@@ -31,6 +31,23 @@ export class LeaderboardController {
       };
     });
 
+    const dbOrganizations = await this.organizationRepository._model.find({});
+    for (const organization of dbOrganizations) {
+      const found = mappedStandings.find((i) => i.squad._id === String(organization._id));
+
+      organization.members = [];
+      if (!found) {
+        mappedStandings.push({
+          position: mappedStandings.length + 1,
+          squad: organization,
+          commits: 0,
+          linesAdded: 0,
+          linesRemoved: 0,
+          files: 0,
+        });
+      }
+    }
+
     let userTeam;
     if (user && user.organizationId) {
       userTeam = mappedStandings.find((i) => String(i._id) === user.organizationId);

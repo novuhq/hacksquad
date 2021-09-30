@@ -25,7 +25,11 @@ export default function Onboarding() {
   const [form] = Form.useForm();
   const [color, setColor] = useState<string>('#693C72');
   const [image, setImage] = useState<string>();
+  const [companyImage, setCompanyImage] = useState<string>();
+  const [companyImageLoading, setCompanyImageLoading] = useState<boolean>();
   const [file, setFile] = useState<RcFile>();
+  const [companyFile, setCompanyFile] = useState<RcFile>();
+
   const [imageLoading, setImageLoading] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
@@ -46,10 +50,26 @@ export default function Onboarding() {
   }, []);
 
   useEffect(() => {
+    if (companyFile) {
+      handleCompanyUpload();
+    }
+  }, [companyFile]);
+
+  useEffect(() => {
     if (file) {
       handleUpload();
     }
   }, [file]);
+
+  function beforeCompanyImageUpload(data: RcFile) {
+    if (!mimeTypes[data.type]) {
+      return false;
+    }
+
+    setCompanyFile(data);
+
+    return false;
+  }
 
   function beforeUpload(data: RcFile) {
     if (!mimeTypes[data.type]) {
@@ -59,6 +79,30 @@ export default function Onboarding() {
     setFile(data);
 
     return false;
+  }
+
+  async function handleCompanyUpload() {
+    if (!companyFile) return;
+
+    setCompanyImageLoading(true);
+    const { signedUrl, path } = await getSignedUrl(mimeTypes[companyFile.type]);
+
+    const response = await axios.put(signedUrl, companyFile, {
+      headers: {
+        'Content-Type': companyFile.type,
+      },
+      transformRequest: [
+        (data, headers) => {
+          // eslint-disable-next-line
+          delete headers.common.Authorization;
+
+          return data;
+        },
+      ],
+    });
+
+    setCompanyImage(path);
+    setCompanyImageLoading(false);
   }
 
   async function handleUpload() {
@@ -95,6 +139,7 @@ export default function Onboarding() {
     const data = {
       ...values,
       logo: image,
+      companyLogo: companyImage,
       color,
     };
 
@@ -171,13 +216,6 @@ your
                 <Input size="large" placeholder="Write your fancy squad name here" />
               </Form.Item>
 
-              <Form.Item
-                name="company"
-                label="Company / Organization name"
-                tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}>
-                <Input size="large" placeholder="Bring your homiez fame" />
-              </Form.Item>
-
               <Form.Item label="Pick your squad color">
                 <Popover
                   trigger="click"
@@ -213,7 +251,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={(
+                        content={
                           <BlockPicker
                             color={color}
                             triangle="hide"
@@ -221,7 +259,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        )}
+                        }
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>
@@ -230,6 +268,50 @@ your
                   />
                 </Popover>
               </Form.Item>
+
+              <Row>
+                <Col span={24}>
+                  <h5 style={{ color: 'white', fontSize: 16, marginBottom: 0 }}>Tag your company (optional)</h5>
+                  <p style={{ fontSize: 14, lineHeight: '16px' }}>
+                    We will calculate your company score based on all squads participating.
+                  </p>
+                </Col>
+                <Col span={16}>
+                  <Form.Item
+                    name="company"
+                    label="Company / Organization name"
+                    tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}>
+                    <Input size="large" placeholder="Bring your homiez fame" />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Form.Item>
+                    <div
+                      style={{ textAlign: 'center' }}
+                      onClick={() => {
+                        trackAnalyticsEvent('onboarding:select-company-logo');
+                      }}>
+                      <Upload
+                        accept={Object.keys(mimeTypes).join(', ')}
+                        name="avatar"
+                        listType="picture-card"
+                        data-test-id="upload-image-button"
+                        showUploadList={false}
+                        beforeUpload={beforeCompanyImageUpload}>
+                        {companyImage ? (
+                          <img src={companyImage} alt="avatar" style={{ width: '100%' }} />
+                        ) : (
+                          <div>
+                            {companyImageLoading ? <LoadingOutlined /> : <PlusOutlined />}
+                            <div style={{ marginTop: 8 }}>Company Logo</div>
+                          </div>
+                        )}
+                      </Upload>
+                    </div>
+                  </Form.Item>
+                </Col>
+              </Row>
+
               <div style={{ margin: '0px 0', color: 'white' }}>
                 <Form.Item valuePropName="checked" name="termsAndConditions">
                   <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>

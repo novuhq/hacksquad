@@ -12,6 +12,7 @@ export class CreateOrganizationCommand extends AuthenticatedCommand {
   public readonly name: string;
 
   public readonly company: string;
+  public readonly companyLogo?: string;
 
   @IsOptional()
   @IsHexColor()

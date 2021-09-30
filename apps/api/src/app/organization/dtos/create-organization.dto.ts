@@ -23,4 +23,6 @@ export class CreateOrganizationDto implements ICreateOrganizationDto {
   promotionalsEnabled?: boolean;
 
   termsAndConditions?: boolean;
+
+  companyLogo?: string;
 }

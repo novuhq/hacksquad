@@ -54,6 +54,7 @@ export class OrganizationController {
       logo: body.logo,
       promotionalsEnabled: body.promotionalsEnabled,
       termsAndConditions: body.termsAndConditions,
+      companyLogo: body.companyLogo,
     });
     const organization = await this.createOrganizationUsecase.execute(command);
 

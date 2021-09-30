@@ -97,7 +97,7 @@ export default function LeaderboardPage() {
         <Row justify="center" style={{ marginBottom: 30 }}>
           <Col md={10} sm={24} xs={24}>
             <h1 style={{ fontSize: 24, marginBottom: 10, lineHeight: '24px' }} className="hero-heading-white">
-              How calculate the leaderboard?
+              How we calculate the leaderboard?
             </h1>
 
             <p>

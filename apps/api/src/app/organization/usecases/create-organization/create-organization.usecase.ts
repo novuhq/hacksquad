@@ -25,7 +25,7 @@ export class CreateOrganization {
     organization.name = command.name;
     organization.color = command.color;
     organization.logo = command.logo;
-
+    organization.companyLogo = command.companyLogo;
     const user = await this.userRepository.findById(command.userId);
 
     const createdOrganization = await this.organizationRepository.create(organization);

@@ -20,6 +20,8 @@ export class OrganizationEntity {
 
   acceptsJoins?: boolean;
 
+  companyLogo?: string;
+
   @Exclude({ toPlainOnly: true })
   members?: MemberEntity[];
 }

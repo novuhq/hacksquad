@@ -62,7 +62,7 @@ export default function CompeteInvite() {
           Accept your invite to participate against {squad?.name}
         </div>
         <h1 className="hero-heading-white" style={{ marginBottom: 70 }}>
-          <span style={{ color: '#5ec6e8' }}> {squad?.name}</span> invited you
+          <span style={{ color: '#5ec6e8' }}> {squad?.name}</span> invited you to compete
         </h1>
         <GithubLoginButton style={{ maxWidth: 300 }} onClick={() => window.open(`${AUTH_URL}`)} />
       </div>

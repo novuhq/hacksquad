@@ -22,6 +22,9 @@ export default function Resources() {
                 Hosted by DigitalOcean for the 8th year in a row, Hacktoberfest encourages participation in giving back
                 to the open source community by completing pull requests, and donating to open source projects.
               </p>
+{' '}
+              <br />
+              <a href="https://hacktoberfest.digitalocean.com/">Click to see more</a>
             </a>
             <a href="https://github.com/mungell/awesome-for-beginners" className="value-card-dark w-inline-block">
               <h5 className="h5-title-white">awesome-for-beginners</h5>
@@ -30,6 +33,9 @@ export default function Resources() {
                 to contribute, then explore this list, look at first-timers-only labelled open issues on Github.
                 <br />
               </p>
+
+              <br />
+              <a href="https://github.com/mungell/awesome-for-beginners">Click to see more</a>
             </a>
             <a href="https://www.codetriage.com/" className="value-card-dark w-inline-block">
               <h5 className="h5-title-white">CodeTriage</h5>
@@ -39,6 +45,9 @@ export default function Resources() {
                 wins.
                 <br />
               </p>
+
+              <br />
+              <a href="https://www.codetriage.com/">Click to see more</a>
             </a>
           </div>
         </div>

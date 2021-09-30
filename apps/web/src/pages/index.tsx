@@ -34,5 +34,14 @@ const LandingPagWrapper = styled.div`
     .header-image {
       display: none;
     }
+
+    .logo-centre a {
+      text-align: center;
+    }
+
+    .logo-centre img {
+      width: 60%;
+      margin: 0 auto;
+    }
   }
 `;

@@ -171,9 +171,6 @@ your
               <Form.Item label="Pick your squad color">
                 <Popover
                   trigger="click"
-                  onClick={() => {
-                    trackAnalyticsEvent('onboarding:select-color');
-                  }}
                   content={
                     <BlockPicker
                       color={color}
@@ -196,6 +193,9 @@ your
                   }
                   placement="topLeft">
                   <Input
+                    onClick={() => {
+                      trackAnalyticsEvent('onboarding:select-color');
+                    }}
                     size="large"
                     style={{ width: '100%' }}
                     disabled
@@ -203,7 +203,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={
+                        content={(
                           <BlockPicker
                             color={color}
                             triangle="hide"
@@ -211,7 +211,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        }
+                        )}
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>

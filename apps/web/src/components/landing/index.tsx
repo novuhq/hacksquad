@@ -111,10 +111,8 @@ export function ValuesSection() {
                   <a className="button button-space w-button">Rules</a>
                 </Link>
 
-                <Link href="/rules" passHref>
-                  <a href="/resources" className="button-dark w-button">
-                    Resources
-                  </a>
+                <Link href="/resources" passHref>
+                  <a className="button-dark w-button">Resources</a>
                 </Link>
               </div>
             </div>
@@ -302,6 +300,15 @@ export function SponsorsSection() {
           <a href="https://daily.dev/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:daily.dev')}>
             <img
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6151a1dc5ce80b84a433d024_Logo%20-%20White.png"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b9312f"
+              alt=""
+              className="logo"
+            />
+          </a>
+          <a href="https://amplication.com/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:amplication')}>
+            <img
+              src="/amplication-logo.svg"
               loading="lazy"
               id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b9312f"
               alt=""

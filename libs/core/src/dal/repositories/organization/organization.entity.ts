@@ -15,6 +15,7 @@ export class OrganizationEntity {
   _id?: string;
   color: string;
   name: string;
+  tagline: string;
   company?: string;
   logo: string;
 

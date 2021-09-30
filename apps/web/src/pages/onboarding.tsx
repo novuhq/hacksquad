@@ -188,6 +188,9 @@ your
                   placeholder="Write your fancy squad name here"
                 />
               </Form.Item>
+              <Form.Item label="Squad Tagline" tooltip="A catchy phrase for your squad" name="tagline">
+                <Input maxLength={40} size="large" placeholder="A catchy phrase for your squad" />
+              </Form.Item>
 
               <Form.Item
                 name="company"
@@ -221,7 +224,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={
+                        content={(
                           <BlockPicker
                             color={color}
                             colors={fullColorList}
@@ -230,7 +233,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        }
+                        )}
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>

@@ -23,6 +23,7 @@ export class CreateOrganization {
     const organization = new OrganizationEntity();
     organization.company = command.company;
     organization.name = command.name;
+    organization.tagline = command.tagline;
     organization.color = command.color;
     organization.logo = command.logo;
 

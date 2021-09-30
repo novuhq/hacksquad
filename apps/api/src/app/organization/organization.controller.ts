@@ -49,6 +49,7 @@ export class OrganizationController {
     const command = CreateOrganizationCommand.create({
       userId: user._id,
       name: body.name,
+      tagline: body.tagline,
       company: body.company,
       color: body.color,
       logo: body.logo,

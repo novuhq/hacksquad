@@ -1,4 +1,5 @@
-import { IsDefined, IsHexColor, IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsDefined, IsHexColor, IsOptional, IsString, IsUrl, Length } from 'class-validator';
+import { Field } from '@nestjs/graphql';
 import { AuthenticatedCommand } from '../../../shared/commands/authenticated.command';
 import { CommandHelper } from '../../../shared/commands/command.helper';
 
@@ -10,6 +11,12 @@ export class CreateOrganizationCommand extends AuthenticatedCommand {
   @IsDefined()
   @IsString()
   public readonly name: string;
+
+  @IsString()
+  @IsOptional()
+  @Field({ nullable: true })
+  @Length(3, 40)
+  public readonly tagline: string;
 
   public readonly company: string;
 

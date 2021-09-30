@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import {
   FeaturedTeams,
   Footer,
@@ -9,12 +10,8 @@ import {
 } from '../components/landing';
 
 export default function Home() {
-  async function authenticate() {
-    console.log('e');
-  }
-
   return (
-    <div>
+    <LandingPagWrapper>
       <PageBanner />
 
       <MainPageHero />
@@ -28,6 +25,14 @@ export default function Home() {
       <FeaturedTeams />
 
       <Footer />
-    </div>
+    </LandingPagWrapper>
   );
 }
+
+const LandingPagWrapper = styled.div`
+  @media screen and (max-width: 1024px) {
+    .header-image {
+      display: none;
+    }
+  }
+`;

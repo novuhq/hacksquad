@@ -75,16 +75,6 @@ export function NavigationBar() {
               </Link>
             </div>
           )}
-
-          <div
-            className="navigation-menu-dark w-nav-button"
-            aria-label="menu"
-            role="button"
-            aria-controls="w-nav-overlay-0"
-            aria-haspopup="menu"
-            aria-expanded="false">
-            <div className="w-icon-nav-menu" />
-          </div>
         </div>
       </NavigationContainer>
     </NavigationWrapper>

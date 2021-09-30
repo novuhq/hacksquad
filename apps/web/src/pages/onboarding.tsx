@@ -37,7 +37,7 @@ export default function Onboarding() {
   useEffect(() => {
     if (!isServerSide()) {
       const user = getUser();
-      if (user.organizationId) {
+      if (user?.organizationId) {
         router.push('/leaderboard');
       }
     }
@@ -114,9 +114,9 @@ export default function Onboarding() {
   return (
     <>
       <NavigationBar />
-      <div style={{ padding: '100px 0' }}>
+      <div style={{ padding: '100px 10px' }}>
         <Row justify="center">
-          <Col span={6}>
+          <Col span={6} xs={24}>
             <h1 className="hero-heading-white">
               Create
               <br />
@@ -126,7 +126,7 @@ your
             </h1>
           </Col>
 
-          <Col span={6}>
+          <Col span={6} xs={24}>
             <Form form={form} layout="vertical" onFinish={submit}>
               <Form.Item>
                 <div

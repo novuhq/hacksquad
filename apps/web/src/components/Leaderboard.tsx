@@ -37,7 +37,7 @@ function ListingItem({ data }: { data: any }) {
         </span>
       </AvatarWrapper>
 
-      <div style={{ display: 'flex' }}>
+      <RightRowWrapper style={{ display: 'flex' }}>
         <StatsWrapper>
           <Tooltip title="Total squad accepted or merged pull requests">
             <span>
@@ -59,7 +59,7 @@ function ListingItem({ data }: { data: any }) {
             </span>
           </Tooltip>
         </StatsWrapper>
-        <div
+        <AvatarGroupWrapper
           style={{ width: 150, textAlign: 'right', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Avatar.Group>
             {data.squad?.members.map((member) => {
@@ -76,11 +76,24 @@ function ListingItem({ data }: { data: any }) {
               );
             })}
           </Avatar.Group>
-        </div>
-      </div>
+        </AvatarGroupWrapper>
+      </RightRowWrapper>
     </ItemWrapper>
   );
 }
+
+const AvatarGroupWrapper = styled.div`
+  @media screen and (max-width: 1024px) {
+    display: none !important;
+  }
+`;
+
+const RightRowWrapper = styled.div`
+  @media screen and (max-width: 1024px) {
+    display: block !important;
+    line-height: 38px;
+  }
+`;
 
 const StatsWrapper = styled.div`
   display: flex;

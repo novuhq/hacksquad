@@ -54,7 +54,7 @@ export default function Resources() {
             </p>
           </div>
           <div className="company-pattern-wrapper">
-            <div className="w-layout-grid company-grid">
+            <div className="w-layout-grid resources-grid">
               <div id="w-node-c6842d2c-2214-f88d-f23f-7dc0b3588b43-b3588b38" className="company-card-dark">
                 <div className="title-light-grey">Begginers</div>
                 <ul role="list">

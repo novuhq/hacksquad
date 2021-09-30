@@ -14,6 +14,10 @@ data "aws_ssm_parameter" "sendgrid_api_key" {
   name = "/${terraform.workspace}/SENDGRID_API_KEY"
 }
 
+data "aws_ssm_parameter" "sentry_dsn" {
+  name = "/${terraform.workspace}/SENTRY_DSN"
+}
+
 locals {
   prefix = terraform.workspace
   api_secrets = concat([
@@ -32,6 +36,10 @@ locals {
     {
       valueFrom: data.aws_ssm_parameter.sendgrid_api_key.arn,
       name: "SENDGRID_API_KEY"
+    },
+    {
+      valueFrom: data.aws_ssm_parameter.sentry_dsn.arn,
+      name: "SENTRY_DSN"
     },
     {
       valueFrom: aws_ssm_parameter.mongo_db_ssm.arn,

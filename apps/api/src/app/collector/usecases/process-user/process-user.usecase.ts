@@ -83,7 +83,7 @@ export class ProcessUserUsecase {
   private async getPullRequests(username: string, octokit: Octokit) {
     const pullRequests = [];
     for await (const response of octokit.paginate.iterator(octokit.search.issuesAndPullRequests, {
-      q: `author:${username} created:>2021-09-01 type:pr`,
+      q: `author:${username} created:>2021-10-01 type:pr`,
       per_page: 100,
     })) {
       pullRequests.push(...response.data);

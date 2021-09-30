@@ -293,17 +293,6 @@ export function SponsorsSection() {
               className="logo"
             />
           </a>
-          <a href="https://bridgecrew.io/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:bridgecrew')}>
-            <img
-              style={{ width: 150, position: 'relative', top: 8 }}
-              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e0895eb1c24e2506696f_panw-bridgecrew-closing-logo-lockup-white.svg"
-              loading="lazy"
-              id="w-node-d667362f-3d76-0aba-5d94-efeb72b93136-72b9312f"
-              alt=""
-              className="logo"
-            />
-          </a>
-
           <a href="https://daily.dev/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:daily.dev')}>
             <img
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6151a1dc5ce80b84a433d024_Logo%20-%20White.png"

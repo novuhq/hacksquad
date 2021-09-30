@@ -70,7 +70,7 @@ export function NavigationBar() {
                 <a
                   className="navigation-link-dark-signup w-button"
                   onClick={() => trackAnalyticsEvent('leaderboard:my-team')}>
-                  My Team
+                  My Squad
                 </a>
               </Link>
             </div>

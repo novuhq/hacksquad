@@ -39,7 +39,7 @@ function ListingItem({ data }: { data: any }) {
 
       <div style={{ display: 'flex' }}>
         <StatsWrapper>
-          <Tooltip title="Total team accepted or merged pull requests">
+          <Tooltip title="Total squad accepted or merged pull requests">
             <span>
               <b>{data.commits} </b>
               PRS

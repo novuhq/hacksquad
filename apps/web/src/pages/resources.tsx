@@ -50,7 +50,7 @@ export default function Resources() {
             <div className="title-blue">digging a bit deeper</div>
             <h3 className="h3-title-white margin-bottom-24">Utilities And Guides</h3>
             <p className="body-large-300">
-              From aewsome lists, commit guides, dedicated sites for contribution, and how to win a t-shirt.
+              From awesome lists, commit guides, dedicated sites for contribution, and how to win a t-shirt.
             </p>
           </div>
           <div className="company-pattern-wrapper">

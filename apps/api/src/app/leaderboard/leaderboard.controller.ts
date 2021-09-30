@@ -36,6 +36,7 @@ export class LeaderboardController {
       const found = mappedStandings.find((i) => i.squad._id === String(organization._id));
 
       organization.members = [];
+
       if (!found) {
         mappedStandings.push({
           position: mappedStandings.length + 1,

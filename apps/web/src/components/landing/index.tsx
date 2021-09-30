@@ -41,11 +41,11 @@ export function MainPageHero() {
     <div className="header-section-dark">
       <div className="container home-header-grid">
         <div>
+          {/*
           <div className="title-blue">Join with your squad</div>
-          <h1 className="hero-heading-white">Friendly Open-Source Squad Competition</h1>
-          <p className="body-large-400 max-width">
-            Participate in Hacktoberfest 2021. Contribute Code. Help the community. Win Swag.
-          </p>
+*/}
+          <h1 className="hero-heading-white">Join Hacktoberfest with your squad</h1>
+          <p className="body-large-400 max-width">Contribute Code. Help the community. Win Swag.</p>
           <div className="button-wrapper-centre">
             {/* <a
               href={AUTH_URL}

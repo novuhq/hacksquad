@@ -43,7 +43,7 @@ export function MainPageHero() {
           <div className="title-blue">Join with your team</div>
           <h1 className="hero-heading-white">Friendly Open-Source Team Competition</h1>
           <p className="body-large-400 max-width">
-            Join Hacktoberfest 2021. Contribute Code. Help the community. Win Swag.
+            Participate in Hacktoberfest 2021. Contribute Code. Help the community. Win Swag.
           </p>
           <div className="button-wrapper-centre">
             <a

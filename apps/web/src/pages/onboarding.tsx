@@ -28,7 +28,8 @@ export default function Onboarding() {
   const [file, setFile] = useState<RcFile>();
   const [imageLoading, setImageLoading] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+
   useEffect(() => {
     if (!isServerSide()) {
       trackAnalyticsEvent('onboarding:started');
@@ -136,15 +137,7 @@ your
           </Col>
 
           <Col md={6} xs={24}>
-            <Form
-              onValuesChange={onFormChange}
-              initialValues={{
-                termsAndConditions: true,
-                promotionalsEnabled: true,
-              }}
-              form={form}
-              layout="vertical"
-              onFinish={submit}>
+            <Form onValuesChange={onFormChange} initialValues={{}} form={form} layout="vertical" onFinish={submit}>
               <Form.Item>
                 <div
                   style={{ textAlign: 'center' }}
@@ -242,11 +235,11 @@ your
                   <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
                     I agree to the
                     <Link href="/rules"> rules</Link>
-,<Link href="/privacy"> privacy policy</Link>
-{' '}
-and
+                    ,<Link href="/privacy"> privacy policy</Link>
+                    {' '}
+                    and
 <Link href="/terms"> terms and conditions</Link>
-.
+                    .
 </Checkbox>
                 </Form.Item>
                 <Form.Item valuePropName="checked" name="promotionalsEnabled">

@@ -14,7 +14,7 @@ import { getUser } from '../shared/auth.service';
 export default function AcceptInvite() {
   const router = useRouter();
   const [squad, setSquad] = useState<IOrganizationEntity>();
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     termsAndConditions: true,
     promotionalsEnabled: true,
@@ -80,19 +80,12 @@ export default function AcceptInvite() {
           Join
           <span style={{ color: '#5ec6e8' }}> {squad?.name}</span>
         </h1>
-        <Form
-          onValuesChange={formChanged}
-          initialValues={{
-            promotionalsEnabled: true,
-            termsAndConditions: true,
-          }}>
+        <Form onValuesChange={formChanged} initialValues={{}}>
           <div style={{ margin: '0px 0', color: 'white' }}>
             <Form.Item valuePropName="checked" name="termsAndConditions">
               <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
-                I agree to the <Link href="/rules"> rules</Link>,<Link href="/privacy"> privacy policy</Link>
-{' '}
-and
-<Link href="/terms"> terms and conditions</Link>.
+                I agree to the <Link href="/rules"> rules</Link>,<Link href="/privacy"> privacy policy</Link> and
+                <Link href="/terms"> terms and conditions</Link>.
               </Checkbox>
             </Form.Item>
             <Form.Item valuePropName="checked" name="promotionalsEnabled">

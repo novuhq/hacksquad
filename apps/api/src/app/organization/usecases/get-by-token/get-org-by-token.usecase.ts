@@ -12,6 +12,8 @@ export class GetOrgByTokenUsecase {
       throw new BadRequestException('Organization not found');
     }
 
+    (organization as any).acceptsJoins = organization.members?.length < 5;
+
     return organization;
   }
 }

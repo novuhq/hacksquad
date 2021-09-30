@@ -5,6 +5,7 @@ import { GithubLoginButton } from 'react-social-login-buttons';
 import { IOrganizationEntity } from '@hacksquad/shared/src';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
+import capitalize from 'lodash.capitalize';
 import { NavigationBar } from '../components/shared/NavBar';
 import { Footer } from '../components/landing';
 import { isServerSide } from '../shared/utils';
@@ -19,6 +20,7 @@ export default function AcceptInvite() {
     termsAndConditions: true,
     promotionalsEnabled: true,
   });
+
   useEffect(() => {
     if (!isServerSide() && router.query.token) {
       loadInviteSquad(router.query.token as string);
@@ -57,55 +59,92 @@ export default function AcceptInvite() {
 
     setFormData(values);
   }
+
   return (
     <>
       <NavigationBar />
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '100px 0',
-          flexDirection: 'column',
-        }}>
-        <Avatar size={100} src={squad?.logo}>
-          {squad?.name[0]}
-        </Avatar>
+      {(squad as any).acceptsJoins && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '100px 0',
+            flexDirection: 'column',
+          }}>
+          <Avatar size={100} src={squad?.logo}>
+            {squad?.name[0]}
+          </Avatar>
 
-        <div className="title-grey-400" style={{ marginBottom: -10, marginTop: 30 }}>
-          Accept your hacksquad invite
-        </div>
-        <h1 className="hero-heading-white" style={{ marginBottom: 70 }}>
-          Join
-          <span style={{ color: '#5ec6e8' }}> {squad?.name}</span>
-        </h1>
-        <Form onValuesChange={formChanged} initialValues={{}}>
-          <div style={{ margin: '0px 0', color: 'white' }}>
-            <Form.Item valuePropName="checked" name="termsAndConditions">
-              <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
-                I agree to the <Link href="/rules"> rules</Link>,<Link href="/privacy"> privacy policy</Link> and
-                <Link href="/terms"> terms and conditions</Link>.
-              </Checkbox>
-            </Form.Item>
-            <Form.Item valuePropName="checked" name="promotionalsEnabled">
-              <Checkbox style={{ marginBottom: '20px', color: 'white', fontWeight: 'normal' }}>
-                I agree to receive promotional emails from notifire.
-              </Checkbox>
-            </Form.Item>
+          <div className="title-grey-400" style={{ marginBottom: -10, marginTop: 30 }}>
+            Accept your hacksquad invite
           </div>
-          <ButtonWrapper disabled={buttonDisabled}>
-            <GithubLoginButton
-              style={{ maxWidth: 300 }}
-              onClick={() =>
-                window.open(
-                  `${AUTH_URL}?token=${router?.query?.token}&promotionalsEnabled=${formData?.promotionalsEnabled}&termsAndConditions=${formData?.termsAndConditions}`
-                )}
-            />
-          </ButtonWrapper>
-        </Form>
-      </div>
+          <h1 className="hero-heading-white" style={{ marginBottom: 70 }}>
+            Join
+            <span style={{ color: '#5ec6e8' }}> 
+{' '}
+{squad?.name}
+</span>
+          </h1>
+          <Form onValuesChange={formChanged} initialValues={{}}>
+            <div style={{ margin: '0px 0', color: 'white' }}>
+              <Form.Item valuePropName="checked" name="termsAndConditions">
+                <Checkbox style={{ marginTop: '10px', marginBottom: -20, color: 'white', fontWeight: 'normal' }}>
+                  I agree to the <Link href="/rules"> rules</Link>,<Link href="/privacy"> privacy policy</Link> and
+                  <Link href="/terms"> terms and conditions</Link>.
+                </Checkbox>
+              </Form.Item>
+              <Form.Item valuePropName="checked" name="promotionalsEnabled">
+                <Checkbox style={{ marginBottom: '20px', color: 'white', fontWeight: 'normal' }}>
+                  I agree to receive promotional emails from notifire.
+                </Checkbox>
+              </Form.Item>
+            </div>
+            <ButtonWrapper disabled={buttonDisabled}>
+              <GithubLoginButton
+                style={{ maxWidth: 300 }}
+                onClick={() =>
+                  window.open(
+                    `${AUTH_URL}?token=${router?.query?.token}&promotionalsEnabled=${formData?.promotionalsEnabled}&termsAndConditions=${formData?.termsAndConditions}`
+                  )
+                }
+              />
+            </ButtonWrapper>
+          </Form>
+        </div>
+      )}
 
+      {!(squad as any).acceptsJoins && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '100px 0',
+            flexDirection: 'column',
+          }}>
+          <Avatar size={100} src={squad?.logo}>
+            {capitalize(squad?.name[0])}
+          </Avatar>
+
+          <h1 className="hero-heading-white" style={{ marginBottom: 70 }}>
+            <span style={{ color: '#5ec6e8' }}> 
+{' '}
+{squad?.name}
+</span> is already full :(
+          </h1>
+
+          <div style={{ color: 'white', textAlign: 'center', fontSize: '20px', marginBottom: 10 }}>
+            Create your own team and compete them!
+          </div>
+          <Form onValuesChange={formChanged} initialValues={{}}>
+            <ButtonWrapper disabled={false}>
+              <GithubLoginButton style={{ maxWidth: 300 }} onClick={() => window.open(`${AUTH_URL}`)} />
+            </ButtonWrapper>
+          </Form>
+        </div>
+      )}
       <Footer />
     </>
   );

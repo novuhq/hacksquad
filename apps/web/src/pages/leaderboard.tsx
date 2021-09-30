@@ -76,7 +76,7 @@ export default function LeaderboardPage() {
                 size="large"
                 readOnly
                 value={`https://hacksquad.dev/compete-invite?token=${user?.organizationId}`}
-                addonAfter={(
+                addonAfter={
                   <>
                     <Button
                       type="link"
@@ -88,7 +88,7 @@ export default function LeaderboardPage() {
                       Copy Link
                     </Button>
                   </>
-                )}
+                }
               />
             </Col>
           </Row>
@@ -101,9 +101,9 @@ export default function LeaderboardPage() {
             </h1>
 
             <p>
-              Each 30 minutes we will scan your open-source GitHub contributions for repos that are "hacktoberfest"
-              participants, PR's that labeled "hacktoberfest-accepted" or merged during October 2021 will be counted.
-              Leaderboard will be calculated based on the approved PR's.
+              Every 30 minutes, we will scan your open-source GitHub contributions for repos that are "hacktoberfest"
+              participants - PRs that are labeled "hacktoberfest-accepted" or merged during October 2021 are counted.
+              The leaderboard will be calculated based on the approved PRs.
             </p>
           </Col>
         </Row>

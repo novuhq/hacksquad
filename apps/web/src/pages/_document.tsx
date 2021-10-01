@@ -31,6 +31,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>Hacksquad 2021 - Join Hacktoberfest with your squad</title>
           <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
             rel="stylesheet"

@@ -139,8 +139,8 @@ export function ValuesSection() {
                 />
                 <h5 className="heading-white">Developers Community</h5>
                 <p className="body-medium">
-                  Open source is much more than just accessible code. It's about being part of a community, educate peers,
-                  learn together, help projects, have fun.
+                  Open source is much more than just accessible code. It's about being part of a community, educate
+                  peers, learn together, help projects, have fun.
                 </p>
               </div>
               <div className="feature-block-dark">
@@ -215,6 +215,13 @@ export function HowItWorksSection() {
                 </a>
               </Link>
             </div>
+          </div>
+          <div className="content-card-dark">
+            <div className="number-blue-large number-meduim">Win Swag</div>
+            <p className="body-medium text-neutral-400">
+              Top 20 teams will get unique hacksquad swag including T-shirts and stickers
+{' '}
+            </p>
           </div>
         </div>
       </div>

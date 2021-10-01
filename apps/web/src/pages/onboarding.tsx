@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Button, Col, Form, Input, Row, Upload, Popover, Divider, message, Checkbox } from 'antd';
-import { InfoCircleOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, LoadingOutlined, PlusOutlined, RetweetOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { RcFile } from 'antd/es/upload';
 import { BlockPicker } from 'react-color';
@@ -14,6 +14,7 @@ import { Footer } from '../components/landing';
 import { getUser, setToken } from '../shared/auth.service';
 import { isServerSide } from '../shared/utils';
 import { trackAnalyticsEvent } from '../shared/analytics.service';
+import { fullColorList, getRandomColor, getRandomName } from '../shared/content-generators.service';
 
 const mimeTypes = {
   'image/jpeg': 'jpeg',
@@ -23,7 +24,8 @@ const mimeTypes = {
 export default function Onboarding() {
   const router = useRouter();
   const [form] = Form.useForm();
-  const [color, setColor] = useState<string>('#693C72');
+  const [color, setColor] = useState<string>();
+
   const [image, setImage] = useState<string>();
   const [companyImage, setCompanyImage] = useState<string>();
   const [companyImageLoading, setCompanyImageLoading] = useState<boolean>();
@@ -37,6 +39,12 @@ export default function Onboarding() {
   useEffect(() => {
     if (!isServerSide()) {
       trackAnalyticsEvent('onboarding:started');
+    }
+  }, []);
+  useEffect(() => {
+    if (!isServerSide()) {
+      setColor(getRandomColor());
+      form.setFieldsValue({ name: getRandomName() });
     }
   }, []);
 
@@ -179,6 +187,29 @@ export default function Onboarding() {
 your
 <span style={{ color: '#5ec6e8' }}> squad</span>
             </h1>
+            <br />
+            <br />
+            <p style={{ maxWidth: '80%' }}>
+              {' '}
+              <span style={{ color: '#5ec6e8', textTransform: 'uppercase' }}> did you know?</span>
+              <br />
+              Once you're done, we collect all OS approved commits auto-magically. <br />
+              <br />
+              <span style={{ color: '#5ec6e8', textTransform: 'uppercase' }}> dont forget!!</span>
+              <br />
+              Register to
+{' '}
+              <a href="https://hacktoberfest.digitalocean.com/register" target="_blank">
+                Hacktoberfest
+              </a>
+{' '}
+              to qualify for their swag, and
+{' '}
+              <a href="https://hacktoberfest.digitalocean.com" target="_blank">
+                learn more
+              </a>
+              .
+            </p>
           </Col>
 
           <Col md={6} xs={24}>
@@ -213,7 +244,20 @@ your
                 label="Squad Name"
                 tooltip="This is a required field"
                 name="name">
-                <Input size="large" placeholder="Write your fancy squad name here" />
+                <Input
+                  size="large"
+                  addonAfter={
+                    <RetweetOutlined
+                      onClick={() => {
+                        form.setFieldsValue({ name: getRandomName() });
+                      }}
+                    />
+                  }
+                  placeholder="Write your fancy squad name here"
+                />
+              </Form.Item>
+              <Form.Item label="Squad Tagline" tooltip="A catchy phrase for your squad" name="tagline">
+                <Input maxLength={40} size="large" placeholder="A catchy phrase for your squad" />
               </Form.Item>
 
               <Form.Item label="Pick your squad color">
@@ -222,17 +266,7 @@ your
                   content={
                     <BlockPicker
                       color={color}
-                      colors={[
-                        '#693C72',
-                        '#F64662',
-                        '#005874',
-                        '#DD4747',
-                        '#511E78',
-                        '#259F6C',
-                        '#FFBE00',
-                        '#5170FD',
-                        '#F4ABC4',
-                      ]}
+                      colors={fullColorList}
                       triangle="hide"
                       onChange={(selectedColor) => {
                         setColor(selectedColor.hex);
@@ -254,6 +288,7 @@ your
                         content={
                           <BlockPicker
                             color={color}
+                            colors={fullColorList}
                             triangle="hide"
                             onChange={(selectedColor) => {
                               setColor(selectedColor.hex);

@@ -187,6 +187,29 @@ export default function Onboarding() {
 your
 <span style={{ color: '#5ec6e8' }}> squad</span>
             </h1>
+            <br />
+            <br />
+            <p style={{ maxWidth: '80%' }}>
+              {' '}
+              <span style={{ color: '#5ec6e8', textTransform: 'uppercase' }}> did you know?</span>
+              <br />
+              Once you're done, we collect all OS approved commits auto-magically. <br />
+              <br />
+              <span style={{ color: '#5ec6e8', textTransform: 'uppercase' }}> dont forget!!</span>
+              <br />
+              Register to
+{' '}
+              <a href="https://hacktoberfest.digitalocean.com/register" target="_blank">
+                Hacktoberfest
+              </a>
+{' '}
+              to qualify for their swag, and
+{' '}
+              <a href="https://hacktoberfest.digitalocean.com" target="_blank">
+                learn more
+              </a>
+              .
+            </p>
           </Col>
 
           <Col md={6} xs={24}>
@@ -262,7 +285,7 @@ your
                     addonAfter={
                       <Popover
                         trigger="click"
-                        content={(
+                        content={
                           <BlockPicker
                             color={color}
                             colors={fullColorList}
@@ -271,7 +294,7 @@ your
                               setColor(selectedColor.hex);
                             }}
                           />
-                        )}
+                        }
                         placement="topLeft">
                         <ColorPreview data-test-id="color-picker" $color={color} />
                       </Popover>

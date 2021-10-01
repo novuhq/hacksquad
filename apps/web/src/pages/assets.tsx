@@ -19,7 +19,7 @@ export default function AssetsPage() {
               <strong>
                 <em>
                   Here You can find our logos and brand assets, for more media inquires and other information, email us
-                  at hello@hack-squad.dev
+                  at support@notifire.co
                 </em>
               </strong>
             </p>

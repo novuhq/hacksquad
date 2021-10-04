@@ -35,7 +35,7 @@ export class ContributionRepository extends BaseRepository<ContributionEntity> {
       },
       {
         $sort: {
-          commits: 1,
+          commits: -1,
         },
       },
     ]);

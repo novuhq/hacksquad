@@ -13,7 +13,6 @@ export class GetMyOrganization {
     const organization = await this.getOrganizationUseCase.execute(
       GetOrganizationCommand.create({
         id: command.id,
-        userId: command.userId,
       })
     );
     if (!organization) throw new UnauthorizedException('No organization found');

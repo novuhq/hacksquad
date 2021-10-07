@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { OrganizationRepository } from '@hacksquad/core';
+import { ContributionRepository, OrganizationRepository } from '@hacksquad/core';
 import { GetOrganizationCommand } from './get-organization.command';
 
 @Injectable({

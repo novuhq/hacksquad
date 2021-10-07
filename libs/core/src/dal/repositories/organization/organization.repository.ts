@@ -40,9 +40,9 @@ export class OrganizationRepository extends BaseRepository<OrganizationEntity> {
     return this.mapEntities(organizations);
   }
 
-  async getOrganizationMembers(organizationId: string) {
+  async getOrganizationMembers(organizationId: string, full = false) {
     const organization = await Organization.findById(organizationId)
-      .populate('members.user', 'firstName lastName email _id')
+      .populate('members.user', !full ? 'firstName lastName email _id' : null)
       .select('members');
 
     if (!organization) return [];

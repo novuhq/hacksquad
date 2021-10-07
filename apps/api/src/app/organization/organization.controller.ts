@@ -27,6 +27,14 @@ import { RemoveMemberCommand } from './usecases/membership/remove-member/remove-
 import { IGetMyOrganizationDto } from './dtos/get-my-organization.dto';
 import { OrganizationInvite } from './usecases/organization-invite/organization-invite.usecase';
 import { GetOrgByTokenUsecase } from './usecases/get-by-token/get-org-by-token.usecase';
+import { GetOrganizationCommand } from './usecases/get-organization/get-organization.command';
+import { GetOrganization } from './usecases/get-organization/get-organization.usecase';
+import { GetOrganizationContributions } from './usecases/get-organization-contributions/get-organization-contributions.usecase';
+import { GetOrganizationMembers } from './usecases/get-organization-members/get-organization-members.usecase';
+import { GetOrganizationMembersCommand } from './usecases/get-organization-members/get-organization-members.command';
+import { GetOrganizationContributionsCommand } from './usecases/get-organization-contributions/get-organization-contributions.command';
+import { GetOrganizationMembersDto } from './dtos/get-organization-members.dto';
+import { GetOrganizationContributionsDto } from './dtos/get-organization-contributions.dto';
 
 @Controller('/organizations')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -34,10 +42,13 @@ export class OrganizationController {
   constructor(
     private createOrganizationUsecase: CreateOrganization,
     private getMyOrganizationUsecase: GetMyOrganization,
+    private getOrganizationUsecase: GetOrganization,
     private getMembers: GetMembers,
     private removeMemberUsecase: RemoveMember,
     private organizationInviteUsecase: OrganizationInvite,
-    private getOrganizationByToken: GetOrgByTokenUsecase
+    private getOrganizationByToken: GetOrgByTokenUsecase,
+    private getOrganizationMembersUsecase: GetOrganizationMembers,
+    private getOrganizationContributionsUsecase: GetOrganizationContributions
   ) {}
 
   @Post('/')
@@ -96,6 +107,33 @@ export class OrganizationController {
     });
 
     return await this.getMyOrganizationUsecase.execute(command);
+  }
+
+  @Get('/:id')
+  async getOrganization(@Param('id') id: string): Promise<IGetMyOrganizationDto> {
+    const command = GetOrganizationCommand.create({
+      id,
+    });
+
+    return await this.getOrganizationUsecase.execute(command);
+  }
+
+  @Get('/:id/members')
+  async getOrganizationMembers(@Param('id') id: string): Promise<GetOrganizationMembersDto> {
+    const command = GetOrganizationMembersCommand.create({
+      id,
+    });
+
+    return await this.getOrganizationMembersUsecase.execute(command);
+  }
+
+  @Get('/:id/contributions')
+  async getOrganizationContributions(@Param('id') id: string): Promise<GetOrganizationContributionsDto> {
+    const command = GetOrganizationContributionsCommand.create({
+      id,
+    });
+
+    return await this.getOrganizationContributionsUsecase.execute(command);
   }
 
   @Post('/invite')

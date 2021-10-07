@@ -42,7 +42,6 @@ export class CreateOrganization {
     const organizationAfterChanges = await this.getOrganizationUsecase.execute(
       GetOrganizationCommand.create({
         id: createdOrganization._id,
-        userId: command.userId,
       })
     );
 

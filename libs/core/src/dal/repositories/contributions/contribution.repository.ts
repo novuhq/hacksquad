@@ -40,4 +40,15 @@ export class ContributionRepository extends BaseRepository<ContributionEntity> {
       },
     ]);
   }
+
+  async getOrganizationContributions(organizationId: string): Promise<ContributionEntity[]> {
+    const contributions = await Contribution.find({
+      _organizationId: organizationId,
+      status: {
+        $in: ['merged', 'accepted'],
+      },
+    }).sort({ _id: -1 });
+
+    return this.mapEntities(contributions);
+  }
 }

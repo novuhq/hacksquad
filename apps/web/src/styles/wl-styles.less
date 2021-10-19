@@ -1370,23 +1370,109 @@ blockquote {
   text-align: center;
 }
 
-.logo-centre {
+.logo-centre-3 {
   max-width: 840px;
   margin-right: auto;
   margin-left: auto;
-  -webkit-align-content: stretch;
-  -ms-flex-line-pack: stretch;
-  align-content: stretch;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
   grid-column-gap: 40px;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto auto;
   grid-template-rows: auto auto;
+  justify-content: center;
   // filter: grayscale(100%);
 
   img {
     transition: opacity .3s ease-in;
     opacity: .8;
+    max-height: 45px;
+
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+.logo-centre-2 {
+  max-width: 380px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  grid-column-gap: 40px;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  // filter: grayscale(100%);
+
+  img {
+    transition: opacity .3s ease-in;
+    opacity: .8;
+    max-height: 55px;
+
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}.logo-centre-2-slim {
+  max-width: 340px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  grid-column-gap: 40px;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  // filter: grayscale(100%);
+
+  img {
+    transition: opacity .3s ease-in;
+    opacity: .8;
+    max-height: 55px;
+
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+.logo-centre {
+  max-width: 840px;
+  margin-right: auto;
+  margin-left: auto;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  grid-column-gap: 40px;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  // filter: grayscale(100%);
+
+  img {
+    transition: opacity .3s ease-in;
+    opacity: .8;
+    max-height: 45px;
+
+
     &:hover {
       opacity: 1;
     }

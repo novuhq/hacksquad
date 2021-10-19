@@ -81,6 +81,7 @@ export function MainPageHero() {
               className="hero-image"
             />
           </a>
+          <PresentedSection />
         </div>
       </div>
       <img
@@ -281,30 +282,32 @@ export function SponsorsSection() {
             Sponsored by
           </h4>
         </div>
-        <div className="w-layout-grid logo-centre">
+        <div className="w-layout-grid logo-centre-3">
           <a
             href="https://notifire.co/"
             target="_blank"
             onClick={() => trackAnalyticsEvent('sponsor:notifire')}
-            style={{ position: 'relative', top: -5 }}>
+            style={{
+              position: 'relative',
+              top: -5,
+              display: 'flex',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}>
             <img
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White.png"
               loading="lazy"
               sizes="(max-width: 991px) 94vw, 840px"
               srcSet="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-500.png 500w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-800.png 800w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-1080.png 1080w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-1600.png 1600w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-2000.png 2000w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-2600.png 2600w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White-p-3200.png 3200w, https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e1aab11e8403a836e5af_SideLogo%20-%20White.png 4048w"
               alt=""
-            />
-          </a>
-          <a href="https://appwrite.io/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:appwrite')}>
-            <img
-              src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6150e00f6eb1ae11ee270243_logo-1.svg"
-              loading="lazy"
-              id="w-node-d667362f-3d76-0aba-5d94-efeb72b93135-72b9312f"
-              alt=""
               className="logo"
             />
           </a>
-          <a href="https://daily.dev/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:daily.dev')}>
+          <a
+            href="https://daily.dev/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:daily.dev')}
+            style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
             <img
               src="https://uploads-ssl.webflow.com/6130b55cdc153dd345632ef1/6151a1dc5ce80b84a433d024_Logo%20-%20White.png"
               loading="lazy"
@@ -313,11 +316,91 @@ export function SponsorsSection() {
               className="logo"
             />
           </a>
-          <a href="https://amplication.com/" target="_blank" onClick={() => trackAnalyticsEvent('sponsor:amplication')}>
+          <a
+            href="https://amplication.com/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:amplication')}
+            style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
             <img
               src="/amplication-logo.svg"
               loading="lazy"
               id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b9312f"
+              alt=""
+              className="logo"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+export function PresentedSection() {
+  return (
+    <div className="customer-section-dark" style={{ marginTop: -120 }}>
+      <div className="container">
+        <div className="title-wrap-centre-small">
+          <h4 className="h4-title-white" style={{ fontSize: 20, marginBottom: -30, color: '#91A88C' }}>
+            Presented by
+          </h4>
+        </div>
+        <div className="w-layout-grid logo-centre-2">
+          <a
+            href="https://www.digitalocean.com/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:digitalocean')}
+            style={{
+              position: 'relative',
+              top: -5,
+              display: 'flex',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}>
+            <img
+              src="/logo-digitalocean-gr.f6faef2.svg"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-73469542f"
+              loading="lazy"
+              alt=""
+              className="logo"
+            />
+          </a>
+
+          <a
+            href="https://appwrite.io/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:appwrite')}
+            style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+            <img
+              src="/logo-appwrite-gr.1161116.svg"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b93135-72b9312f"
+              alt=""
+              className="logo"
+            />
+          </a>
+        </div>
+        <div className="w-layout-grid logo-centre-2-slim">
+          <a
+            href="https://devmesh.intel.com/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:intel')}
+            style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+            <img
+              src="/logo-intel-gr.a510816.svg"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-12b92312f"
+              alt=""
+              className="logo"
+            />
+          </a>
+          <a
+            href="https://deepsource.io/hacktoberfest/"
+            target="_blank"
+            onClick={() => trackAnalyticsEvent('sponsor:deepsource')}
+            style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+            <img
+              src="/logo-deepsource-gr.37aa9bc.svg"
+              loading="lazy"
+              id="w-node-d667362f-3d76-0aba-5d94-efeb72b94236-72b2212f"
               alt=""
               className="logo"
             />

@@ -5,6 +5,7 @@ import {
   HowItWorksSection,
   MainPageHero,
   PageBanner,
+  PresentedSection,
   SponsorsSection,
   ValuesSection,
 } from '../components/landing';

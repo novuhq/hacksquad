@@ -65,7 +65,7 @@ export default function Resources() {
           <div className="company-pattern-wrapper">
             <div className="w-layout-grid resources-grid">
               <div id="w-node-c6842d2c-2214-f88d-f23f-7dc0b3588b43-b3588b38" className="company-card-dark">
-                <div className="title-light-grey">Begginers</div>
+                <div className="title-light-grey">Beginners</div>
                 <ul role="list">
                   <li className="list-item-3">
                     <a href="https://github.com/mungell/awesome-for-beginners">

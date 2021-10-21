@@ -14,7 +14,7 @@ export default function RulesPage() {
       <div className="content-section-dark">
         <div className="container-small">
           <div className="article white-label w-richtext">
-            <h3>Have Fun</h3>
+            <h3 className="h3-title-white">Have Fun</h3>
             <p>
               <strong>
                 <em>
@@ -94,7 +94,7 @@ Bad Repos
                   <h5 className="h4-title-white h4-no-space">
                     <span className="text-span-2"> </span>
 {' '}
-Igonred Commits or Ban
+Ignored Commits or Ban
 </h5>
                 </div>
               </div>
@@ -117,23 +117,22 @@ Igonred Commits or Ban
                 competition.
               </li>
               <li>
-                Only meaningful and approved (merged or not) commits will be counted. If you are using bots, scripts, or
-                spam pull request or not counted, squads who does that might be dropped from the competition. See more.
+                Only meaningful and approved (merged or not) commits will be counted. commits / pull requests made using bots, scripts, or 
+                spammy pull request are not counted, squads that do as such might be dropped from the competition. See more.
               </li>
               <li>
-                Bad repos, i.e., approval of bad commits, not flagging spam as spam, or any type of bad behavior may
-                omitted.
+                Bad repos, i.e., repositories that approve bad commits, don't flag spam as spam, or exhibit any type of bad behavior may be omitted.
               </li>
             </ol>
             <h4>Winning</h4>
             <p>
-              A squad that won, don't worry, we will let you, and everyone else know :), will be contacted to get their
-              address for shipment of the swag kit, as well as each will get a digital badge, with their name, squad
+              For squad's that win, don't worry, we will let you, and everyone else know :). We will contact you to get your
+              shipping address for the swag kit, furthermore participants will get a digital badge, that displays their name, squad
               name, position, year, just to show off.{' '}
             </p>
-            <h5>Note</h5>
+            <h5 className="h5-title-white">Note</h5>
             <p>
-              For further explanation feel free to contact us and ask you questions. Please refer to the official
+              For further explanation feel free to contact us and ask you questions. Please refer to the official 
               <a href="https://hacktoberfest.digitalocean.com/resources/participation" target="_blank">
                 hacktoberfest rules
               </a>

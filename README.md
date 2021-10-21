@@ -18,3 +18,10 @@ Join Hacktoberfest 2021 with your squad and win swag
   <br/>
   </p>
   
+
+  <p align="center">
+    <br />
+    <a href="https://discord.gg/9wcGSf22PM"><strong>Join our Discord</strong></a>
+    <br />
+  <br/>
+  </p>

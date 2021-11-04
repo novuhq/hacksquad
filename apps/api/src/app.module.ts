@@ -51,34 +51,5 @@ export class AppModule implements OnModuleInit {
 
   async onModuleInit() {
     await this.cronService.initialize();
-
-    this.cronService.define('collector_job', async (job, done) => {
-      const users = await this.userRepository.find({});
-
-      for (const user of users) {
-        // eslint-disable-next-line no-console
-        await this.queueService.userProcessQueue.add(
-          {
-            userId: user._id,
-          },
-          {
-            removeOnComplete: true,
-          }
-        );
-      }
-
-      done();
-    });
-
-    await this.cronService.processEvery('collector_job', '30 minutes');
-    await this.cronService.processNow('collector_job');
-
-    this.queueService.userProcessQueue.process(5, async (job) => {
-      const user = await this.userRepository.findById(job.data.userId);
-
-      await this.processUser.execute({
-        user,
-      });
-    });
   }
 }

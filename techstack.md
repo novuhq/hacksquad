@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 novuhq/hacksquad is built on the following main stack:
+
 - [Chartio](https://chartio.com) – Business Intelligence
 - [Sentry](https://sentry.io/welcome/?utm_source=stackshare&utm_medium=link&utm_campaign=profile) – Exception Monitoring
 - [Mocha](http://mochajs.org/) – Javascript Testing Framework
@@ -42,11 +43,13 @@ novuhq/hacksquad is built on the following main stack:
 - [GitHub Actions](https://github.com/features/actions) – Continuous Integration
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 novuhq/hacksquad is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/9/TtrFaQ3j_400x400.png' alt='Chartio'/> [Chartio](https://chartio.com) – Business Intelligence
 - <img width='25' height='25' src='https://img.stackshare.io/service/191/default_9262326592c97828a2a4299dec085a3674dd05f4.png' alt='Sentry'/> [Sentry](https://sentry.io/welcome/?utm_source=stackshare&utm_medium=link&utm_campaign=profile) – Exception Monitoring
 - <img width='25' height='25' src='https://img.stackshare.io/service/832/mocha.png' alt='Mocha'/> [Mocha](http://mochajs.org/) – Javascript Testing Framework
@@ -87,14 +90,15 @@ novuhq/hacksquad is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/11563/actions.png' alt='GitHub Actions'/> [GitHub Actions](https://github.com/features/actions) – Continuous Integration
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [novuhq/hacksquad](https://github.com/novuhq/hacksquad)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|115<br/>Tools used|11/09/23 <br/>Report generated|
+|117<br/>Tools used|01/04/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -508,9 +512,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (69)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (71)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (69)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (71)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -565,9 +569,11 @@ Full tech stack [here](/techstack.md)
 |[googleapis](https://www.npmjs.com/googleapis)|v60.0.1|09/24/21|Dima Grossman |Apache-2.0|N/A|
 |[graphql-tools](https://www.npmjs.com/graphql-tools)|v4.0.8|09/24/21|Dima Grossman |MIT|N/A|
 |[hat](https://www.npmjs.com/hat)|v0.0.3|09/24/21|Dima Grossman |MIT,X11|N/A|
+|[husky](https://www.npmjs.com/husky)|v4.3.0|09/24/21|Dima Grossman |MIT|N/A|
 |[jsonfile](https://www.npmjs.com/jsonfile)|v4.0.0|09/24/21|Dima Grossman |MIT|N/A|
 |[jsonwebtoken](https://www.npmjs.com/jsonwebtoken)|v8.5.1|09/24/21|Dima Grossman |MIT|[CVE-2022-23529](https://github.com/advisories/GHSA-27h2-hvpr-p74q) (High)<br/>[CVE-2022-23539](https://github.com/advisories/GHSA-8cf7-32gw-wr33) (Moderate)<br/>[CVE-2022-23540](https://github.com/advisories/GHSA-qwph-4952-7xr6) (Moderate)<br/>[CVE-2022-23541](https://github.com/advisories/GHSA-hjrf-2m68-5959) (Moderate)|
 |[jwt-decode](https://www.npmjs.com/jwt-decode)|v3.1.2|09/29/21|Dima Grossman |MIT|N/A|
+|[lint-staged](https://www.npmjs.com/lint-staged)|v10.4.0|09/24/21|Dima Grossman |MIT|N/A|
 |[normalize-url](https://www.npmjs.com/normalize-url)|v3.3.0|09/24/21|Dima Grossman |MIT|N/A|
 |[null-loader](https://www.npmjs.com/null-loader)|v4.0.1|09/26/21|Dima Grossman |MIT|N/A|
 |[passport](https://www.npmjs.com/passport)|v0.4.1|09/24/21|Dima Grossman |MIT|[CVE-2022-25896](https://github.com/advisories/GHSA-v923-w3x8-wh69) (Moderate)|
@@ -587,4 +593,4 @@ Full tech stack [here](/techstack.md)
 <br/>
 <div align='center'>
 
-Generated via [Stack File](https://github.com/apps/stack-file)
+Generated via [Stack File](https://github.com/marketplace/stack-file)

@@ -98,7 +98,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [novuhq/hacksquad](https://github.com/novuhq/hacksquad)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|117<br/>Tools used|01/04/24 <br/>Report generated|
+|117<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
